@@ -2,7 +2,7 @@
 /* jshint esversion: 6, strict: global */
 /* globals chrome */
 /* globals document */
-/* globals location */
+/* globals window */
 // licensed under the MPL 2.0 by (github.com/serv-inc)
 
 /**
@@ -27,7 +27,13 @@ chrome.storage.managed.get("whitelist", function(result) {
 
 
 function hideIf() {
-  if ( ! whitelist.test(window.top.location.href) ) {
+  var urlToCheck;
+  if ( window.parent === window ) { // top frame
+    urlToCheck = document.location;
+  } else { // iframe
+    urlToCheck = document.referrer;
+  }
+  if ( ! whitelist.test(urlToCheck) ) {
     addStyleRule();
   }
 }

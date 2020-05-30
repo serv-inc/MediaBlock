@@ -1,5 +1,7 @@
-* ImageBlock
-Selectively Block Images on Pages
+* Good Company
+If a page is Good Company (TM), show its graphics.
+
+Else, block images on all other Pages.
 
 ** Implementation
 Simple css: img, video { hidden } on matching pages

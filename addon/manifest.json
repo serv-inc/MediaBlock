@@ -4,7 +4,7 @@
     "description": "If a page is Good Company, show its graphics. Else, block images on all other Pages.",
     "version": "0.5.1",
 
-    "icons": { "192": "icon.png" },
+    "icons": { "192": "images/baseline_thumbs_up_down_black_48dp.png" },
 
     "permissions": [
         "tabs",

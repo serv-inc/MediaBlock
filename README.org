@@ -20,3 +20,5 @@ Simple css: img, video { hidden } on matching pages
     did not use leechblock's regex correctly (lacked =.*= at the end)
 *** 0.3.7
     fix: previously attached to iframes depending on *their* domain
+** Credits
+- icon: https://material.io/resources/icons/?icon=thumbs_up_down&style=baseline

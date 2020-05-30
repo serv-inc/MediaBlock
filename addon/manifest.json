@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
-    "name": "MediaBlock",
-    "description": "Hide images and videos on sites except those on the (managed) whitelist.",
+    "name": "Good Company",
+    "description": "If a page is Good Company, show its graphics. Else, block images on all other Pages.",
     "version": "0.5.1",
 
     "icons": { "192": "icon.png" },

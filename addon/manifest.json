@@ -19,5 +19,18 @@
 
     "storage": {
         "managed_schema": "schema.json"
-    }
+    },
+
+"browser_action": {
+  "browser_style": true,
+  "default_icon": {
+    "48":  "images/baseline_thumbs_up_down_black_48dp.png"
+  },
+  "default_title": "Good Company?",
+  "default_popup": "popup.html",
+  "theme_icons": [{
+    "dark":  "2x/baseline_thumbs_up_down_black_48dp.png",
+    "size": 48
+  }]
+}
 }

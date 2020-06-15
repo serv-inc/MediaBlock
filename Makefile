@@ -13,3 +13,8 @@ dev2:
 
 devall:
 	tmux new-session -d '. .v/bin/activate && python manifest.py' \; attach
+
+
+pretty:
+	yarn prettier --write .eslintrc.js addon/manifest.json
+

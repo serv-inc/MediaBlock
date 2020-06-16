@@ -1,3 +1,7 @@
+.PHONY: all setup dev1 dev2 devall pretty test
+
+all: test
+
 setup:
 	yarn
 	yarn setup

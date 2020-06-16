@@ -3,7 +3,10 @@
     "properties": {
         "whitelist": {
             "description": "whitelist of sites to allow",
+          "type": "array",
+          "items": {
             "type": "string"
+          }
         }
     }
 }

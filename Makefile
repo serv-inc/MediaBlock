@@ -6,7 +6,7 @@ setup:
 	cp bower_components/react/react-dom.development.js addon/lib
 
 dev1:
-	. .v/bin/activate && python manifest.py
+	. .v/bin/activate && python sbin/manifest.py
 
 dev2:
 	npx babel --watch src --out-dir addon --presets react-app/prod

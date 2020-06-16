@@ -17,6 +17,7 @@
     "bower": "^1.8.8",
     "eslint": "^7.1.0",
     "eslint-plugin-react": "^7.20.0",
+    "mocha": "^8.0.1",
     "prettier": "2.0.5"
   },
   "dependencies": {

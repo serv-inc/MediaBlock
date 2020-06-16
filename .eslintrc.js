@@ -6,9 +6,9 @@ module.exports = {
   extends: ["eslint:recommended", "plugin:react/recommended"],
   globals: {
     Atomics: "readonly",
-    SharedArrayBuffer: "readonly",
-
+    React: true,
     ReactDOM: true,
+    SharedArrayBuffer: "readonly",
   },
   parserOptions: {
     ecmaVersion: 11,

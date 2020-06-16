@@ -4,3 +4,6 @@ plan.org_archive
 imageblock.zip
 unused
 addon/popup.js
+bower_components
+addon/lib
+node_modules

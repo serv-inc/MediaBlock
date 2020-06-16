@@ -9,7 +9,8 @@ const WHITELIST = RegExp("google.*newtab|google.*source[^\/]*url");
 
 class Whitelist {
   
-  constructor(managed=true) {
+  constructor(storage=chrome.storage) {
+    this.storage = storage;
     this.managed = undefined;
     this.initialized = false;
     // cache warmup
@@ -18,25 +19,32 @@ class Whitelist {
 
   async init() {
     if (this.initialized) {
+      console.log('wl0');
       return;
     }
     if (this.managed) {
-      chrome.storage.managed.get("whitelist", function(result) {
+      this.storage.managed.get("whitelist", function(result) {
+        console.log('wl1');
         if ( "whitelist" in result ) {
+          console.log('wl2');
           this.managed = result.whitelist;
         }
         this.initialized = true;
+        console.log('wl3');
         console.log("storage initialized");
       });
     }
   }
 
   async get() {
+    console.log('wlg1');
     await this.init()
+    console.log('wlg2');
     let w = WHITELIST;
     if (this.managed) {
-      w += "|" + this.managed;
+      w += "|" + this.managed.join('|');
     }
+    console.log(w);
     return RegExp(w);
   }
 }

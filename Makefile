@@ -18,3 +18,6 @@ devall:
 pretty:
 	yarn prettier --write .eslintrc.js addon/manifest.json
 
+
+test:
+	yarn test

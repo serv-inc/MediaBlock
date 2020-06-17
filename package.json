@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "* Good Company If a page is Good Company (TM), show its graphics.",
   "scripts": {
-    "lint": "eslint src/popup.jsx addon/content/blockif.js addon/content/whitelist.js",
+    "lint": "eslint src/popup.jsx src/content/blockif.js src/content/whitelist.js",
     "setup": "bower install  # see also Makefile",
     "test": "yarn lint && yarn unittest",
     "unittest": "mocha"
@@ -16,13 +16,14 @@
   },
   "homepage": "https://github.com/serv-inc/MediaBlock#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
     "bower": "^1.8.8",
+    "browserify": "^16.5.1",
     "eslint": "^7.1.0",
     "eslint-plugin-react": "^7.20.0",
     "mocha": "^8.0.1",
-    "prettier": "2.0.5",
-    "babel-cli": "^6.26.0",
-    "babel-preset-react-app": "^3.1.2"
+    "prettier": "2.0.5"
   },
   "dependencies": {
     "react": "^16.13.1",

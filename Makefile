@@ -15,9 +15,11 @@ dev1:
 dev2:
 	npx babel --watch src --out-dir addon --presets react-app/prod
 
-devall:
-	tmux new-session -d '. .v/bin/activate && python manifest.py' \; attach
+dev3oneshot: test
+	yarn browserify src/content/blockif.js -r ./src/content/whitelist.js  -o addon/content/blockif.js
 
+devalltodo:
+	tmux new-session -d '. .v/bin/activate && python manifest.py' \; attach
 
 pretty:
 	yarn prettier --write .eslintrc.js addon/manifest.json

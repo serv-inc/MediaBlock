@@ -7,3 +7,5 @@ addon/popup.js
 bower_components
 addon/lib
 node_modules
+addon/content/blockif.js
+addon/content/blockif.js.map

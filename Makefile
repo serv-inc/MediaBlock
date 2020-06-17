@@ -8,6 +8,8 @@ setup:
 	mkdir -p addon/lib
 	cp bower_components/react/react.development.js addon/lib
 	cp bower_components/react/react-dom.development.js addon/lib
+	python -m venv .v
+	. .v/bin/activate && pip install GitPython
 
 dev1:
 	. .v/bin/activate && python meta/manifest.py
@@ -23,7 +25,6 @@ devalltodo:
 
 pretty:
 	yarn prettier --write .eslintrc.js addon/manifest.json
-
 
 test:
 	yarn test

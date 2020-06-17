@@ -1,5 +1,5 @@
 /** Whitelist data from managed storage and live */
-const WHITELIST = "google.*newtab|google.*source[^\/]*url";
+const WHITELIST = "google.*newtab|google.*source[^/]*url";
 
 const whitelist = class Whitelist {
   constructor(storage) {

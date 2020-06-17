@@ -11,5 +11,10 @@ describe('Whitelist', function () {
     let q = await w.get()
     assert.match('hello', q);
   });
+  it('should be initialized', async function () {
+    let w = new Whitelist(storage=mockStorage);
+    let q = await w.get()
+    assert.ok(w.initialized);
+  });
 });
 

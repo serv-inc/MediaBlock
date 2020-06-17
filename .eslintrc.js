@@ -9,6 +9,8 @@ module.exports = {
     React: true,
     ReactDOM: true,
     SharedArrayBuffer: "readonly",
+    require: true,
+    exports: true,
   },
   parserOptions: {
     ecmaVersion: 11,

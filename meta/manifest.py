@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 import datetime
 import json
 import time
@@ -16,16 +16,24 @@ def tag():
     return str(tag)
 
 
-def version():
+def now():
+    current = datetime.datetime.now()
     return "{}.{}.{}".format(current.hour, current.minute, current.second)
 
 
-while True:
+def set_manifest_version(value):
     with open(FILE) as f:
         manifest = json.load(f)
-    current = datetime.datetime.now()
-    manifest["version"] = version()
+    manifest["version"] = value
     print(manifest["version"])
     with open(FILE, "w") as f:
         json.dump(manifest, f, indent=2)
-    time.sleep(SLEEP_SEC)
+
+
+while True:
+    try:
+        set_manifest_version(now())
+        time.sleep(SLEEP_SEC)
+    except KeyboardInterrupt:
+        set_manifest_version(tag())
+        break

@@ -6,19 +6,15 @@
   "icons": {
     "192": "images/baseline_thumbs_up_down_black_48dp.png"
   },
-  "permissions": [
-    "tabs",
-    "storage"
-  ],
+  "permissions": ["tabs", "storage"],
+  "background": {
+    "scripts": ["background.js"]
+  },
   "content_scripts": [
     {
-      "matches": [
-        "<all_urls>"
-      ],
+      "matches": ["<all_urls>"],
       "all_frames": true,
-      "js": [
-        "content/blockif.js"
-      ]
+      "js": ["content/blockif.js"]
     }
   ],
   "storage": {

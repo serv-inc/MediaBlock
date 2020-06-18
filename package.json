@@ -8,8 +8,9 @@
     "test": "yarn lint && yarn unittest",
     "unittest": "mocha",
     "dev:react": "babel --watch src/react --out-dir addon --presets react-app/prod",
-    "dev:browserify": "browserify src/browserify/blockif.js -r ./src/browserify/whitelist.js  -o addon/content/blockif.js",
-    "dev:watchify": "watchify src/browserify/blockif.js -r ./src/browserify/whitelist.js  -o addon/content/blockif.js"
+    "dev:browserify": "browserify src/browserify/blockif.js -r ./src/browserify/whitelist.js -o addon/content/blockif.js",
+    "dev:watchifyContent": "watchify src/browserify/blockif.js -r ./src/browserify/whitelist.js -o addon/content/blockif.js",
+    "dev:watchify": "watchify src/browserify/background.js -r ./src/browserify/whitelist.js -o addon/background.js"
   },
   "repository": "git+https://github.com/serv-inc/MediaBlock.git",
   "keywords": [],

@@ -1,12 +1,13 @@
+"use strict";
+/* globals chrome */
+// licensed under the MPL 2.0 by (github.com/serv-inc)
+/** @fileinfo: show browser action popup */
 function formatDomain(domain) {
-  return domain.name + " is " + domain.isGood ? "good " : "bad " + " company";
+  return domain.name + " is " + (domain.isOk ? "good " : "bad ") + " company";
 }
 
-const domain = {
-  name: document.location.host,
-  isGood: true,
-};
+chrome.runtime.sendMessage({ task: "isOk" }, function handler(response) {
+  const element = <p>{formatDomain(response.data)}!</p>;
 
-const element = <h1>Hello, {formatDomain(domain)}!</h1>;
-
-ReactDOM.render(element, document.getElementById("root"));
+  ReactDOM.render(element, document.getElementById("root"));
+});

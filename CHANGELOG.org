@@ -1,0 +1,14 @@
+* Versions
+** 0.5.1
+*** Failed
+    - to only block if main page matches
+** 0.5.0
+*** Lacked
+    - hiding of videos
+    - iframe css
+** 0.4.0
+   - did not use WebExtensions, used LeechBlocks properties
+** 0.3.11
+   did not use leechblock's regex correctly (lacked =.*= at the end)
+** 0.3.7
+   fix: previously attached to iframes depending on *their* domain

@@ -15,10 +15,10 @@ dev1:
 	. .v/bin/activate && python meta/manifest.py
 
 dev2:
-	npx babel --watch src --out-dir addon --presets react-app/prod
+	npx babel --watch src/react --out-dir addon --presets react-app/prod
 
 dev3oneshot: test
-	yarn browserify src/content/blockif.js -r ./src/content/whitelist.js  -o addon/content/blockif.js
+	yarn browserify src/browserify/blockif.js -r ./src/browserify/whitelist.js  -o addon/content/blockif.js
 
 devalltodo:
 	tmux new-session -d '. .v/bin/activate && python manifest.py' \; attach

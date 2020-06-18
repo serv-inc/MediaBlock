@@ -1,5 +1,5 @@
 const assert = require("assert").strict;
-var Whitelist = require("../src/content/whitelist.js").default;
+var Whitelist = require("../src/browserify/whitelist.js").default;
 var mockStorage = require("../meta/mockExt.js").default.storage;
 
 describe("Whitelist", function () {

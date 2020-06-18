@@ -1,0 +1,11 @@
+{
+  "ShowHomeButton": true,
+
+  "3rdparty": {
+    "extensions": {
+      "aiecomejfkmfmbjmmgglanjdcipejhaj": {
+        "whitelist": ["wikipedia.org", "tonsky.me"]
+      }
+    }
+  }
+}

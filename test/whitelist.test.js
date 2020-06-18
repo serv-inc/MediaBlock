@@ -11,6 +11,12 @@ describe("Whitelist", function () {
     let q = await w.get();
     assert.match("hello", q);
   });
+  it("should return the same values", async function () {
+    let w = new Whitelist((storage = mockStorage));
+    let q = await w.get();
+    let q2 = await w.get();
+    assert.deepEqual(q2, q);
+  });
   it("should be initialized", async function () {
     let w = new Whitelist((storage = mockStorage));
     let q = await w.get();

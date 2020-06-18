@@ -25,9 +25,13 @@ const w = class Whitelist {
 
   async get() {
     if (this.initialized) {
-      return;
+      return this.computeWhitelist();
     }
     await this.init();
+    return this.computeWhitelist();
+  }
+
+  computeWhitelist() {
     let w = WHITELIST;
     if (this.managed) {
       w += "|" + this.managed.join("|");

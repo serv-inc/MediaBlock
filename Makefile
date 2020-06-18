@@ -15,13 +15,16 @@ dev1:
 	. .v/bin/activate && python meta/manifest.py
 
 dev2:
-	npx babel --watch src/react --out-dir addon --presets react-app/prod
+	yarn dev:react
 
-dev3oneshot: test
-	yarn browserify src/browserify/blockif.js -r ./src/browserify/whitelist.js  -o addon/content/blockif.js
+dev3: test
+	yarn dev:watchify
 
-devalltodo:
-	tmux new-session -d '. .v/bin/activate && python manifest.py' \; attach
+dev4:
+	cd test/manual && python -m http.server
+
+devall:
+	tmux new-session -d '. .v/bin/activate && python meta/manifest.py' \; new-window -d 'yarn dev:react' \; new-window -d 'yarn dev:watchify' \; new-window -d 'cd test/manual && python -m http.server' \; attach
 
 pretty:
 	yarn prettier --write .eslintrc.js addon/manifest.json

@@ -1,8 +1,8 @@
 *xpi
 *zip
 *~
-addon/content/blockif.js
-addon/content/blockif.js.map
+addon/background.js
+addon/background.js.map
 addon/lib
 addon/popup.js
 bower_components

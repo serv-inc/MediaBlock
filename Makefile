@@ -27,7 +27,7 @@ devall:
 	tmux new-session -d '. .v/bin/activate && python meta/manifest.py' \; new-window -d 'yarn dev:react' \; new-window -d 'yarn dev:watchify' \; new-window -d 'cd test/manual && python -m http.server' \; attach
 
 pretty:
-	yarn prettier --write .eslintrc.js addon/manifest.json
+	yarn pretty
 
 test:
 	yarn test

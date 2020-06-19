@@ -14,9 +14,21 @@ function route(request, sender, sendResponse) {
     return isOkWithUrl(request, sender, sendResponse);
   } else if (request.task === "isOk" && !request.url) {
     return isOk(request, sender, sendResponse);
+  } else if (request.task === "getWhitelist") {
+    return getWhitelist(request, sender, sendResponse);
   } else {
     console.log("unknown: " + request);
   }
+}
+
+function getWhitelist(request, sender, sendResponse) {
+  whitelist.data().then((wreg) =>
+    sendResponse({
+      task: "getWhitelist",
+      data: wreg,
+    })
+  );
+  return true; // keep channel open
 }
 
 /** is active / passed url good company ? */

@@ -13,7 +13,14 @@ const chrome = {
   },
   storage: {
     local: {
-      get: (a, callback) => callback(chrome._store),
+      get: async (a, callback) => {
+        const promise1 = new Promise((resolve, reject) => {
+          setTimeout(() => {
+            callback(chrome._store);
+            resolve(chrome._store);
+          }, 3);
+        });
+      },
       set: (a) => {
         console.log("save" + JSON.stringify(a));
         for (let el in a) {

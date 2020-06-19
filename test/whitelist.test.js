@@ -6,6 +6,11 @@ describe("Whitelist", function () {
   it("should run", function () {
     new Whitelist(mockStorage);
   });
+  it("should be initialized", async function () {
+    let w = new Whitelist((storage = mockStorage));
+    let q = await w.get();
+    assert.ok(w.initialized);
+  });
   it("should contain mock values", async function () {
     let w = new Whitelist((storage = mockStorage));
     let q = await w.get();
@@ -17,9 +22,10 @@ describe("Whitelist", function () {
     let q2 = await w.get();
     assert.deepEqual(q2, q);
   });
-  it("should be initialized", async function () {
+  it("should allow adding", async function () {
     let w = new Whitelist((storage = mockStorage));
+    await w.add("asdf");
     let q = await w.get();
-    assert.ok(w.initialized);
+    assert.match("asdf", q);
   });
 });

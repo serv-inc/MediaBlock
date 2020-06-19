@@ -21,22 +21,20 @@ function route(request, sender, sendResponse) {
 
 /** is active / passed url good company ? */
 function isOkWithUrl(request, sender, sendResponse) {
-  console.log("isOkWithUrl");
-  console.log(request.url);
   whitelist.get().then((wreg) =>
     sendResponse({
       task: "isOkWithUrl",
       data: { isOk: wreg.test(request.url.host) },
     })
   );
-  return true;
+  return true; // keep channel open
 }
 
 /** is active / passed url good company ? */
 function isOk(request, sender, sendResponse) {
   chrome.tabs.query({ active: true }, (tabs) => {
     const activeTab = tabs[0];
-    // todo: fails on page load, leaves popup empty, error in log
+    // todo: fails while page is loading, leaves popup empty, error in log
     const u = new URL(activeTab.url);
     whitelist
       .get()
@@ -50,14 +48,3 @@ function isOk(request, sender, sendResponse) {
   });
   return true; // keep channel open
 }
-/*
-function getWhitelist(request, sender, sendResponse) {
-    whitelist
-      .get()
-      .then((wreg) =>
-        sendResponse({
-          task: "isOk",
-          data: { name: u.host, isOk: wreg.test(u.host) },
-        })
-      )
-  */

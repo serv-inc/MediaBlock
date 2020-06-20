@@ -3,6 +3,7 @@ import datetime
 import json
 import time
 import os
+import shutil
 
 import git
 
@@ -30,10 +31,11 @@ def set_manifest_version(value):
         json.dump(manifest, f, indent=2)
 
 
+shutil.copy(FILE, FILE + ".bak")
 while True:
     try:
         set_manifest_version(now())
         time.sleep(SLEEP_SEC)
     except KeyboardInterrupt:
-        set_manifest_version(tag())
+        shutil.copy(FILE + ".bak", FILE)
         break

@@ -63,7 +63,7 @@ const w = class Whitelist {
       this.local.push(elem);
       return new Promise((resolve) => {
         this.storage.local.set({ whitelist: this.local }, () => {
-          if (chrome.runtime.lastError) {
+          if (typeof chrome !== "undefined" && chrome.runtime.lastError) {
             resolve(false);
           } else {
             resolve(true);
@@ -75,10 +75,10 @@ const w = class Whitelist {
 
   computeWhitelist() {
     let w = WHITELIST;
-    if (this.managed) {
+    if (this.managed.length) {
       w += "|" + this.managed.join("|");
     }
-    if (this.local) {
+    if (this.local.length) {
       w += "|" + this.local.join("|");
     }
     return RegExp(w);

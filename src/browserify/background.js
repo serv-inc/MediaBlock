@@ -50,12 +50,12 @@ function isOk(request, sender, sendResponse) {
     const u = new URL(activeTab.url);
     whitelist
       .get()
-      .then((wreg) =>
+      .then((wreg) => {
         sendResponse({
           task: "isOk",
           data: { name: u.host, isOk: wreg.test(u.host) },
-        })
-      )
+        });
+      })
       .catch((err) => console.log("error is " + err));
   });
   return true; // keep channel open

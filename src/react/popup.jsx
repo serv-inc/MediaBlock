@@ -25,8 +25,15 @@ function Domain(prop) {
   );
 }
 
-function status(domain) {
-  return domain.name + " is " + (domain.isOk ? "good " : "bad ") + " company";
+function CurrentPage(prop) {
+  return (
+    <div>
+      <p>
+        {prop.name} is {prop.isOk ? "good" : "bad"} company
+      </p>
+      <button>toggle</button>
+    </div>
+  );
 }
 
 function formatWhitelistManaged(whitelist) {
@@ -40,7 +47,7 @@ function formatWhitelistManaged(whitelist) {
 }
 
 chrome.runtime.sendMessage({ task: "isOk" }, function handler(response) {
-  const element = <p>{status(response.data)}!</p>;
+  const element = <CurrentPage prop={response.data} />;
 
   ReactDOM.render(element, document.getElementById("root"));
 });

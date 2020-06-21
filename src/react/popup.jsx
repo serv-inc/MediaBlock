@@ -2,6 +2,8 @@
 /* globals chrome */
 // licensed under the MPL 2.0 by (github.com/serv-inc)
 /** @fileinfo: show browser action popup */
+
+/** @return link to prop.domain */
 function Anchor(prop) {
   return (
     <a
@@ -14,6 +16,7 @@ function Anchor(prop) {
   );
 }
 
+/** @return list item for prop.domain */
 function Domain(prop) {
   return (
     <li id={prop.domain} key={prop.domain}>

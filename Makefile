@@ -24,7 +24,7 @@ dev4:
 	cd test/manual && python -m http.server
 
 devall:
-	tmux new-session -d '. .v/bin/activate && python meta/manifest.py' \; new-window -d 'yarn dev:react' \; new-window -d 'yarn dev:watchify' \; new-window -d 'cd test/manual && python -m http.server' \; attach
+	tmux new-session -n mnfst -d '. .v/bin/activate && python meta/manifest.py' \; new-window -n rct -d 'yarn dev:react' \; new-window -n ify -d 'yarn dev:watchify' \; new-window -n srv -d 'cd test/manual && python -m http.server' \; attach
 
 pretty:
 	yarn pretty

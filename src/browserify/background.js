@@ -2,7 +2,12 @@
 /* globals chrome */
 // licensed under the MPL 2.0 by (github.com/serv-inc)
 
-/** fileoverview send whitelist when messaged */
+/** fileoverview
+    1. check if url on whitelist
+    2. check if active tab on whitelist
+    3. add entry to whitelist
+    4. get whole whitelist
+ */
 
 const Whitelist = require("./whitelist.js").default;
 const whitelist = new Whitelist();
@@ -16,9 +21,21 @@ function route(request, sender, sendResponse) {
     return isOk(request, sender, sendResponse);
   } else if (request.task === "getWhitelist") {
     return getWhitelist(request, sender, sendResponse);
+  } else if (request.task === "addToWhitelist" && request.addthis) {
+    return addToWhitelist(request, sender, sendResponse);
   } else {
     console.log("unknown: " + request);
   }
+}
+
+function addToWhitelist(request, sender, sendResponse) {
+  whitelist.add(request.addthis).then((status) =>
+    sendResponse({
+      task: "addToWhitelist",
+      success: status,
+    })
+  );
+  return true; // keep channel open
 }
 
 function getWhitelist(request, sender, sendResponse) {

@@ -26,12 +26,26 @@ function Domain(prop) {
 }
 
 function CurrentPage(prop) {
+  function onClick(event) {
+    event.preventDefault();
+    chrome.runtime.sendMessage(
+      { task: "addToWhitelist", addthis: prop.name },
+      function handler(response) {
+        if (!response) {
+          console.log("failed to set");
+        }
+        showTop();
+      }
+    );
+  }
+
+  console.log(prop);
   return (
     <div>
       <p>
         {prop.name} is {prop.isOk ? "good" : "bad"} company
       </p>
-      <button>toggle</button>
+      <button onClick={onClick}>toggle</button>
     </div>
   );
 }
@@ -46,11 +60,17 @@ function formatWhitelistManaged(whitelist) {
   );
 }
 
-chrome.runtime.sendMessage({ task: "isOk" }, function handler(response) {
-  const element = <CurrentPage prop={response.data} />;
+function showTop() {
+  chrome.runtime.sendMessage({ task: "isOk" }, function handler(response) {
+    const element = (
+      <CurrentPage name={response.data.name} isOk={response.data.isOk} />
+    );
 
-  ReactDOM.render(element, document.getElementById("root"));
-});
+    ReactDOM.render(element, document.getElementById("root"));
+  });
+}
+
+showTop();
 
 chrome.runtime.sendMessage({ task: "getWhitelist" }, function handler(
   response

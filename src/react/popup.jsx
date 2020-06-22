@@ -2,26 +2,32 @@
 /* globals chrome */
 // licensed under the MPL 2.0 by (github.com/serv-inc)
 /** @fileinfo: show browser action popup */
+function showTop() {
+  chrome.runtime.sendMessage({ task: "isOk" }, function handler(response) {
+    const element = (
+      <CurrentPage name={response.data.name} isOk={response.data.isOk} />
+    );
 
-/** @return link to prop.domain */
-function Anchor(prop) {
-  return (
-    <a
-      target="_blank"
-      rel="noopener noreferrer"
-      href={"https://" + prop.domain}
-    >
-      {prop.domain}
-    </a>
-  );
+    ReactDOM.render(element, document.getElementById("root"));
+  });
 }
+showTop();
 
-/** @return list item for prop.domain */
-function Domain(prop) {
+chrome.runtime.sendMessage({ task: "getWhitelist" }, function handler(
+  response
+) {
+  const managed = <Whitelist list={response.data.managed} />;
+
+  ReactDOM.render(managed, document.getElementById("root-managed"));
+});
+
+function Whitelist(prop) {
   return (
-    <li id={prop.domain} key={prop.domain}>
-      <Anchor domain={prop.domain} />
-    </li>
+    <ul>
+      {prop.list.map((d) => (
+        <Domain key={d} domain={d} />
+      ))}
+    </ul>
   );
 }
 
@@ -39,7 +45,6 @@ function CurrentPage(prop) {
     );
   }
 
-  console.log(prop);
   return (
     <div>
       <p>
@@ -49,33 +54,23 @@ function CurrentPage(prop) {
     </div>
   );
 }
-
-function formatWhitelistManaged(whitelist) {
+/** @return list item for prop.domain */
+function Domain(prop) {
   return (
-    <ul>
-      {whitelist.data.managed.map((d) => (
-        <Domain key={d} domain={d} />
-      ))}
-    </ul>
+    <li id={prop.domain} key={prop.domain}>
+      <Anchor domain={prop.domain} />
+    </li>
   );
 }
-
-function showTop() {
-  chrome.runtime.sendMessage({ task: "isOk" }, function handler(response) {
-    const element = (
-      <CurrentPage name={response.data.name} isOk={response.data.isOk} />
-    );
-
-    ReactDOM.render(element, document.getElementById("root"));
-  });
+/** @return link to prop.domain */
+function Anchor(prop) {
+  return (
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href={"https://" + prop.domain}
+    >
+      {prop.domain}
+    </a>
+  );
 }
-
-showTop();
-
-chrome.runtime.sendMessage({ task: "getWhitelist" }, function handler(
-  response
-) {
-  const managed = <div>{formatWhitelistManaged(response)}</div>;
-
-  ReactDOM.render(managed, document.getElementById("root-managed"));
-});

@@ -16,7 +16,12 @@ showTop();
 chrome.runtime.sendMessage({ task: "getWhitelist" }, function handler(
   response
 ) {
-  const managed = <Whitelist list={response.data.managed} />;
+  const managed = (
+    <div>
+      <Whitelist list={response.data.managed} />
+      <Whitelist list={response.data.local} />
+    </div>
+  );
 
   ReactDOM.render(managed, document.getElementById("root-managed"));
 });

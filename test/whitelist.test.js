@@ -61,4 +61,12 @@ describe("Whitelist", function () {
     let q = await w.get();
     assert.notMatch("asdf", q);
   });
+
+  it("should allow removing with awaited adding", async function () {
+    let w = new Whitelist(mockStorage);
+    await w.add("asdf");
+    await w.remove("asdf");
+    let q = await w.get();
+    assert.notMatch("asdf", q);
+  });
 });

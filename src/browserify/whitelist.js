@@ -57,11 +57,12 @@ const w = class Whitelist {
     return { managed: this.managed, local: this.local };
   }
 
+  /** @return true if added, false if not or error */
   async add(elem) {
     const w = await this.get();
-    if (!w.test(elem)) {
-      this.local.push(elem);
-      return new Promise((resolve) => {
+    return new Promise((resolve) => {
+      if (!w.test(elem)) {
+        this.local.push(elem);
         this.storage.local.set({ whitelist: this.local }, () => {
           if (typeof chrome !== "undefined" && chrome.runtime.lastError) {
             resolve(false);
@@ -69,8 +70,27 @@ const w = class Whitelist {
             resolve(true);
           }
         });
-      });
-    }
+      }
+      resolve(false);
+    });
+  }
+
+  /** @return true if removed, false if not or error */
+  async remove(elem) {
+    const w = await this.get();
+    return new Promise((resolve) => {
+      if (w.test(elem)) {
+        this.local.splice(this.local.indexOf(elem), 1);
+        this.storage.local.set({ whitelist: this.local }, () => {
+          if (typeof chrome !== "undefined" && chrome.runtime.lastError) {
+            resolve(false);
+          } else {
+            resolve(true);
+          }
+        });
+      }
+      resolve(false);
+    });
   }
 
   computeWhitelist() {

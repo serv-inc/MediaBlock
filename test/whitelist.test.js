@@ -1,9 +1,13 @@
-/* globals describe, it */
+/* globals describe, it, beforeEach */
 const assert = require("chai").assert;
 const Whitelist = require("../src/browserify/whitelist.js").default;
-const mockStorage = require("../meta/mockExt.js").default.storage;
+let mockStorage;
 
 describe("Whitelist", function () {
+  beforeEach(() => {
+    mockStorage = require("../meta/mockExt.js").default.storage;
+  });
+
   it("should run", function () {
     new Whitelist(mockStorage);
   });
@@ -38,5 +42,23 @@ describe("Whitelist", function () {
     await w.add("asdf");
     let q = await w.get();
     assert.match("asdf", q);
+    await w.remove("asdf");
+    q = await w.get();
+    assert.notMatch("asdf", q);
+  });
+
+  it("should allow removing", async function () {
+    let w = new Whitelist(mockStorage);
+    await w.remove("asdf");
+    let q = await w.get();
+    assert.notMatch("asdf", q);
+  });
+
+  it("should allow removing with adding", async function () {
+    let w = new Whitelist(mockStorage);
+    w.add("asdf");
+    await w.remove("asdf");
+    let q = await w.get();
+    assert.notMatch("asdf", q);
   });
 });

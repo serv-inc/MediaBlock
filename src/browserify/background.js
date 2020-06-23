@@ -43,7 +43,6 @@ function isOkWithUrl(request, sender, sendResponse) {
 function isOk(request, sender, sendResponse) {
   chrome.tabs.query({ active: true }, (tabs) => {
     const activeTab = tabs[0];
-    console.log(activeTab.url);
     if (typeof activeTab.url === "undefined" || activeTab.url.length == 0) {
       // todo: replace with tabs.onActivated or sth if that is used (also for icon)
       request.url = { host: "page loading, unknown domain" };

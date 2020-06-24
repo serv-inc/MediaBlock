@@ -3,7 +3,7 @@ import Switch from "./Switch.js";
 
 const Status = ({ name, isOk, onClick }) => {
   return (
-    <div>
+    <div className="status">
       <p>
         {name} is
         <Switch

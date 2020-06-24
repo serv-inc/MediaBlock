@@ -2,20 +2,34 @@
 /* globals chrome */
 // licensed under the MPL 2.0 by (github.com/serv-inc)
 /** @fileinfo: show browser action popup */
-
-import Switch from "./Switch.js";
+import Status from "./Status.js";
 
 /** shows this site's state */
-function showTop() {
-  chrome.runtime.sendMessage({ task: "isOk" }, function handler(response) {
-    const element = (
-      <CurrentPage name={response.data.name} isOk={response.data.isOk} />
-    );
-
-    ReactDOM.render(element, document.getElementById("root"));
-  });
+function onClick() {
+  chrome.runtime.sendMessage(
+    {
+      task: status.props.isOk ? "removeFromWhitelist" : "addToWhitelist",
+      name: status.props.name,
+    },
+    function handler(response) {
+      if (!response) {
+        console.log("failed to set");
+      }
+      showTop(status.props.name, !status.props.isOk);
+    }
+  );
 }
-showTop();
+
+let status;
+
+chrome.runtime.sendMessage({ task: "isOk" }, function handler(response) {
+  showTop(response.data.name, response.data.isOk);
+});
+function showTop(name, isOk) {
+  status = <Status name={name} isOk={isOk} onClick={onClick} />;
+
+  ReactDOM.render(status, document.getElementById("root"));
+}
 
 /** show whitelists */
 chrome.runtime.sendMessage({ task: "getWhitelist" }, function handler(
@@ -41,30 +55,6 @@ function Whitelist(prop) {
   );
 }
 
-function CurrentPage(prop) {
-  function onClick(event) {
-    event.preventDefault();
-    chrome.runtime.sendMessage(
-      { task: "addToWhitelist", addthis: prop.name },
-      function handler(response) {
-        if (!response) {
-          console.log("failed to set");
-        }
-        showTop();
-      }
-    );
-  }
-
-  return (
-    <div>
-      <p>
-        {prop.name} is {prop.isOk ? "good" : "bad"} company
-      </p>
-      <button onClick={onClick}>toggle</button>
-      <Switch />
-    </div>
-  );
-}
 /** @return list item for prop.domain */
 function Domain(prop) {
   return (

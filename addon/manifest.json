@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Good Company",
   "description": "If a page is Good Company, show its graphics. On all other pages, block images.",
-  "version": "5.49.37",
+  "version": "0.5.1",
   "icons": {
     "192": "images/baseline_thumbs_up_down_black_48dp.png"
   },

@@ -9,3 +9,5 @@ addon/popup/popup.js
 bower_components
 node_modules
 unused
+addon/popup/Switch.js
+*.bak

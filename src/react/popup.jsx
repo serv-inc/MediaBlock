@@ -2,6 +2,10 @@
 /* globals chrome */
 // licensed under the MPL 2.0 by (github.com/serv-inc)
 /** @fileinfo: show browser action popup */
+
+import Switch from "./Switch.js";
+
+/** shows this site's state */
 function showTop() {
   chrome.runtime.sendMessage({ task: "isOk" }, function handler(response) {
     const element = (
@@ -13,6 +17,7 @@ function showTop() {
 }
 showTop();
 
+/** show whitelists */
 chrome.runtime.sendMessage({ task: "getWhitelist" }, function handler(
   response
 ) {
@@ -56,6 +61,7 @@ function CurrentPage(prop) {
         {prop.name} is {prop.isOk ? "good" : "bad"} company
       </p>
       <button onClick={onClick}>toggle</button>
+      <Switch />
     </div>
   );
 }

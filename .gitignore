@@ -11,3 +11,4 @@ node_modules
 unused
 addon/popup/Switch.js
 *.bak
+addon/popup/Status.js

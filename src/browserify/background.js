@@ -19,29 +19,32 @@ function route(request, sender, sendResponse) {
     return isOkWithUrl(request, sender, sendResponse);
   } else if (request.task === "isOk" && !request.url) {
     return isOk(request, sender, sendResponse);
-  } else if (request.task === "addToWhitelist" && request.addthis) {
+  } else if (request.task === "addToWhitelist" && request.name) {
     return addToWhitelist(request, sender, sendResponse);
   } else if (request.task === "getWhitelist") {
     return getWhitelist(request, sender, sendResponse);
+  } else if (request.task === "removeFromWhitelist") {
+    return removeFromWhitelist(request, sender, sendResponse);
   } else {
-    console.log("unknown: " + request);
+    console.log("unknown");
+    console.log(request);
   }
 }
 
 /** is active / passed url good company ? */
-function isOkWithUrl(request, sender, sendResponse) {
-  whitelist.get().then((wreg) =>
+async function isOkWithUrl(request, sender, sendResponse) {
+  await whitelist.get().then((wreg) => {
     sendResponse({
       task: "isOkWithUrl",
       data: { isOk: wreg.test(request.url.host), name: request.url.host },
-    })
-  );
+    });
+  });
   return true; // keep channel open
 }
 
 /** is active / passed url good company ? */
 function isOk(request, sender, sendResponse) {
-  chrome.tabs.query({ active: true }, (tabs) => {
+  chrome.tabs.query({ active: true }, async (tabs) => {
     const activeTab = tabs[0];
     if (typeof activeTab.url === "undefined" || activeTab.url.length == 0) {
       // todo: replace with tabs.onActivated or sth if that is used (also for icon)
@@ -50,23 +53,33 @@ function isOk(request, sender, sendResponse) {
       const u = new URL(activeTab.url);
       request.url = u;
     }
-    isOkWithUrl(request, sender, sendResponse);
+    await isOkWithUrl(request, sender, sendResponse);
   });
   return true; // keep channel open
 }
 
-function addToWhitelist(request, sender, sendResponse) {
-  whitelist.add(request.addthis).then((status) =>
+async function addToWhitelist(request, sender, sendResponse) {
+  await whitelist.add(request.name).then((status) => {
     sendResponse({
       task: "addToWhitelist",
       success: status,
-    })
-  );
+    });
+  });
   return true; // keep channel open
 }
 
-function getWhitelist(request, sender, sendResponse) {
-  whitelist.data().then((wreg) =>
+async function removeFromWhitelist(request, sender, sendResponse) {
+  await whitelist.remove(request.name).then((status) => {
+    sendResponse({
+      task: "removeFromWhitelist",
+      success: status,
+    });
+  });
+  return true; // keep channel open
+}
+
+async function getWhitelist(request, sender, sendResponse) {
+  await whitelist.data().then((wreg) =>
     sendResponse({
       task: "getWhitelist",
       data: wreg,

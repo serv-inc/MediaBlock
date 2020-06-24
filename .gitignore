@@ -1,11 +1,11 @@
 *xpi
 *zip
 *~
+.v
 addon/background.js
 addon/background.js.map
 addon/lib
-addon/popup.js
+addon/popup/popup.js
 bower_components
 node_modules
 unused
-.v

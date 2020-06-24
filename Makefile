@@ -15,10 +15,10 @@ dev1:
 	. .v/bin/activate && python meta/manifest.py
 
 dev2:
-	yarn dev:react
+	yarn dev:popup
 
 dev3: test
-	yarn dev:watchify
+	yarn dev:background
 
 dev4:
 	cd test/manual && python -m http.server

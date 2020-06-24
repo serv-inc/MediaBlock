@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "* Good Company If a page is Good Company (TM), show its graphics.",
   "scripts": {
+    "dev:background": "watchify   src/browserify/background.js -r ./src/browserify/whitelist.js -o addon/background.js",
+    "dev:popup": "babel --watch src/react --out-dir addon/popup --presets react-app/prod",
     "lint": "eslint **/*.jsx src/*/*.js",
+    "pretty": "prettier --write .eslintrc.js addon/manifest.json **/*.js **/*.jsx",
+    "prod:background": "browserify src/browserify/background.js -r ./src/browserify/whitelist.js -o addon/background.js",
     "setup": "bower install  # see also Makefile",
     "test": "yarn lint && yarn unittest",
-    "unittest": "mocha",
-    "dev:react": "babel --watch src/react --out-dir addon --presets react-app/prod",
-    "dev:browserify": "browserify src/browserify/background.js -r ./src/browserify/whitelist.js -o addon/background.js",
-    "dev:watchify": "watchify   src/browserify/background.js -r ./src/browserify/whitelist.js -o addon/background.js",
-    "pretty": "prettier --write .eslintrc.js addon/manifest.json **/*.js **/*.jsx"
+    "unittest": "mocha"
   },
   "repository": "git+https://github.com/serv-inc/MediaBlock.git",
   "keywords": [],

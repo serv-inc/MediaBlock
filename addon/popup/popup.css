@@ -18,9 +18,9 @@ ul {
   justify-content: space-between;
   cursor: pointer;
   width: 100px;
-  height: 50px;
+  height: 25px;
   background: grey;
-  border-radius: 100px;
+  border-radius: 50px;
   position: relative;
   transition: background-color 0.2s;
 }
@@ -31,9 +31,9 @@ ul {
   top: 2px;
   left: 2px;
   width: 45px;
-  height: 45px;
-  border-radius: 45px;
-  transition: 0.2s;
+  height: 21px; /* label.height -2*top */
+  border-radius: 25px;
+  transition: 0.1s;
   background: #fff;
   box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
 }

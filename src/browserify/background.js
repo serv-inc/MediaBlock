@@ -44,8 +44,8 @@ async function isOkWithUrl(request, sender, sendResponse) {
 
 /** is active / passed url good company ? */
 function isOk(request, sender, sendResponse) {
-  chrome.tabs.query({ active: true }, async (tabs) => {
-    const activeTab = tabs[0];
+  chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+    const activeTab = tabs[tabs.length - 1];
     if (typeof activeTab.url === "undefined" || activeTab.url.length == 0) {
       // todo: replace with tabs.onActivated or sth if that is used (also for icon)
       request.url = { host: "page loading, unknown domain" };

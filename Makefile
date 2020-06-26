@@ -31,3 +31,8 @@ pretty:
 
 test:
 	yarn test
+
+deploy: test zip
+
+zip:
+	cd addon && zip -r ../GoodCompany.zip ./*

@@ -8,6 +8,7 @@ import shutil
 import git
 
 FILE = "addon/manifest.json"
+BAKFILE = "meta/manifest.json"
 SLEEP_SEC = os.environ.get("SLEEP_SEC", 10)
 
 
@@ -31,11 +32,11 @@ def set_manifest_version(value):
         json.dump(manifest, f, indent=2)
 
 
-shutil.copy(FILE, FILE + ".bak")
+shutil.copy(FILE, BAKFILE)
 while True:
     try:
         set_manifest_version(now())
         time.sleep(SLEEP_SEC)
     except KeyboardInterrupt:
-        shutil.copy(FILE + ".bak", FILE)
+        shutil.copy(BAKFILE, FILE)
         break

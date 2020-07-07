@@ -4,9 +4,24 @@
 /** @fileinfo: show browser action popup */
 import Status from "./Status.js";
 
+function showTop() {
+  chrome.runtime.sendMessage({ task: "isOk" }, function handler(response) {
+    status = (
+      <Status
+        name={response.data.name}
+        isOk={response.data.isOk}
+        onClick={onClick}
+      />
+    );
+    ReactDOM.render(status, document.getElementById("root"));
+  });
+}
+showTop();
+
 /** shows this site's state */
 function onClick() {
   chrome.runtime.sendMessage(
+    // todo: better to "toggleWhitelist"?
     {
       task: status.props.isOk ? "removeFromWhitelist" : "addToWhitelist",
       name: status.props.name,
@@ -15,21 +30,23 @@ function onClick() {
       if (!response) {
         console.log("failed to set");
       }
-      showTop(status.props.name, !status.props.isOk);
+      showTop();
     }
   );
+  toggleContentBlock();
+}
+
+function toggleContentBlock() {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(
+      tabs[0].id,
+      { task: "toggleContentScript" },
+      function () {}
+    );
+  });
 }
 
 let status;
-
-chrome.runtime.sendMessage({ task: "isOk" }, function handler(response) {
-  showTop(response.data.name, response.data.isOk);
-});
-function showTop(name, isOk) {
-  status = <Status name={name} isOk={isOk} onClick={onClick} />;
-
-  ReactDOM.render(status, document.getElementById("root"));
-}
 
 /** show whitelists */
 chrome.runtime.sendMessage({ task: "getWhitelist" }, function handler(

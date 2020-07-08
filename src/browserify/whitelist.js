@@ -5,33 +5,28 @@ const WHITELIST = "google.*newtab|google.*source[^/]*url";
 const w = class Whitelist {
   constructor(storage) {
     this.storage = storage || chrome.storage;
-    this.initializedLocal = false;
-    this.initializedManaged = false;
+    this.initialized = false;
     this.local = [];
     this.managed = [];
     this.initialize(); // cache warmup
   }
 
-  get initialized() {
-    return this.initializedLocal && this.initializedManaged;
-  }
-
   async initialize() {
-    if (!this.initialized) {
-      return await Promise.all([this.initManaged(), this.initLocal()]);
-    }
+    const managed = this.initManaged();
+    const local = this.initLocal();
+    return Promise.all([managed, local]);
   }
 
   async initManaged() {
     return new Promise((resolve) => {
-      if (this.initializedManaged) {
+      if (this.initialized) {
         resolve();
       }
       this.storage.managed.get("whitelist", (result) => {
         if ("whitelist" in result) {
           this.managed = result.whitelist;
         }
-        this.initializedManaged = true;
+        this.initialized = true;
         resolve();
       });
     });
@@ -39,14 +34,14 @@ const w = class Whitelist {
   // TODO: code duplication
   async initLocal() {
     return new Promise((resolve) => {
-      if (this.initializedLocal) {
+      if (this.initialized) {
         resolve();
       }
       this.storage.local.get("whitelist", (result) => {
         if ("whitelist" in result) {
           this.local = result.whitelist;
         }
-        this.initializedLocal = true;
+        this.initialized = true;
         resolve();
       });
     });
@@ -75,10 +70,8 @@ const w = class Whitelist {
             resolve(true);
           }
         });
-      } else {
-        console.log("already added");
-        resolve(false);
       }
+      resolve(false);
     });
   }
 
@@ -95,10 +88,8 @@ const w = class Whitelist {
             resolve(true);
           }
         });
-      } else {
-        console.log("already removed");
-        resolve(false);
       }
+      resolve(false);
     });
   }
 

@@ -3,13 +3,7 @@
   "description": "* Good Company If a page is Good Company (TM), show its graphics.",
   "license": "ISC",
   "homepage": "https://github.com/serv-inc/MediaBlock",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
+  "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"],
   "dependencies": {
     "react": "^16.1.0"
   }

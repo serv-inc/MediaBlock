@@ -29,11 +29,8 @@
     "default_popup": "popup/popup.html",
     "theme_icons": [
       {
-        "dark": "2x/baseline_thumbs_up_down_black_48dp.png",
-        "size": 48
-      },
-      {
         "light": "2x/baseline_thumbs_up_down_black_48dp.png",
+        "dark": "2x/baseline_thumbs_up_down_black_48dp.png",
         "size": 48
       }
     ]

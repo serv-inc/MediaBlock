@@ -6,6 +6,7 @@
   "icons": {
     "192": "images/baseline_thumbs_up_down_black_48dp.png"
   },
+  "applications": { "gecko": { "id": "@good-co" } },
   "permissions": ["tabs", "storage"],
   "background": {
     "scripts": ["background.js"]

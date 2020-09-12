@@ -8,8 +8,8 @@ describe("code", () => {
 
 describe("settings", () => {
   it("loads", async () => {
-    expect($set).toBeTruthy();
+    expect($set).to.be.ok;
     await $set.load();
-    chai.expect($set.initialized).to.be(true);
+    expect($set.initialized).to.be(true);
   });
 });

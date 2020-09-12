@@ -1,0 +1,3 @@
+const $set = {
+  initialized: true,
+};

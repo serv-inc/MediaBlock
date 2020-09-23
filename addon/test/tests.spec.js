@@ -1,4 +1,4 @@
-/* globals $et, describe, it, chai */
+/* globals $et, describe, it, chai, chrome */
 const expect = chai.expect;
 
 describe("testing the tests", () => {
@@ -8,31 +8,51 @@ describe("testing the tests", () => {
 });
 
 describe("settings", () => {
+  let $set;
+  beforeEach(async () => {
+    $set = new Set();
+  });
+
   it("exists", () => {
-    expect($et).to.be.ok;
+    expect($set).to.be.ok;
   });
 
   it("loads", async () => {
-    await $et.load();
-    expect($et.loaded).to.equal(true);
+    await $set.load();
+    expect($set.loadedLocal).to.equal(true);
   });
 
   describe("storage", () => {
     beforeEach(async () => {
-      $et.load();
+      chrome.storage.local.clear();
+      $set.load();
     });
 
     it("saves", async () => {
-      $et.hello = "world";
-      await $et.load();
-      expect($et.hello).to.equal("world");
+      await $set.set("hello", "world");
+      await $set.load();
+      expect($set.get("hello")).to.equal("world");
+    });
+
+    it("saves and local storage has it", async () => {
+      await $set.set("hello", "world");
+      chrome.storage.local.get("hello", (result) => {
+        expect(result.hello).to.equal("world");
+      });
+    });
+
+    it("saves and all local storage has it", async () => {
+      await $set.set("hello", "world");
+      chrome.storage.local.get(null, (result) => {
+        expect(result.hello).to.equal("world");
+      });
     });
 
     it("saves and next has it", async () => {
-      $et.hello = "world";
-      const $2 = new Set();
-      await $2.load();
-      expect($2.hello).to.equal("world");
+      await $set.set("hello", "world");
+      let $s2 = new Set();
+      await $s2.load();
+      expect($s2.get("hello")).to.equal("world");
     });
   });
 });

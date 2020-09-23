@@ -5,8 +5,13 @@ class Set {
     this.storage = {};
   }
 
-  get loaded() {
-    return this.loadedLocal;
+  get(name) {
+    return this.storage[name];
+  }
+
+  async set(name, value) {
+    this.storage[name] = value;
+    this.save();
   }
 
   async load() {
@@ -22,13 +27,16 @@ class Set {
   }
 
   async _loadLocal() {
+    chrome.storage.local.get(null, (res2) => {
+      console.log(res2);
+    });
     return new Promise((resolve) => {
       chrome.storage.local.get(null, (result) => {
-        if (typeof result !== "undefined") {
-          for (let el in result) {
-            if (Object.prototype.hasOwnProperty.call(result, el)) {
-              this._addToSettings(el, result[el]);
-            }
+        console.debug("hiii");
+        console.debug(result);
+        for (let el in result || []) {
+          if (result.hasOwnProperty(el)) {
+            this.storage[el] = result[el];
           }
         }
         this.loadedLocal = true;
@@ -37,18 +45,3 @@ class Set {
     });
   }
 }
-
-const handler = {
-  set: (obj, prop, value) => {
-    obj.storage[prop] = value;
-    obj.save(prop);
-  },
-  get: (obj, prop) => {
-    return obj.storage[prop];
-  },
-  apply: (target, thisArg, args) => {
-    return target(args);
-  },
-}; //new Proxy(new Set(), handler);
-
-const $et = new Set();

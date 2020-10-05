@@ -1,0 +1,2 @@
+** Implementation
+Simple css: img, video { hidden } on matching pages

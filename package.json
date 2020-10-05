@@ -9,7 +9,7 @@
     "pretty": "prettier --write .eslintrc.js addon/manifest.json **/*.js **/*.jsx",
     "prod:background": "browserify src/browserify/background.js -r ./src/browserify/whitelist.js -o addon/background.js",
     "setup": "bower install  # see also Makefile",
-    "test": "yarn lint && yarn unittest",
+    "test": "npm run lint && npm run unittest",
     "unittest": "mocha"
   },
   "repository": "git+https://github.com/serv-inc/MediaBlock.git",

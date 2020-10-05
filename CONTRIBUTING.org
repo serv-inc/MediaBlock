@@ -1,2 +1,6 @@
-** Implementation
-Simple css: img, video { hidden } on matching pages
+* Implementation
+Hiding code is simple css: img, video { hidden } on matching pages
+* Testing
+1. load the addon temporarily (firefox: about:debugging)
+2. click on the manifest URL
+3. replace =manifest.json= with =test/index.html=

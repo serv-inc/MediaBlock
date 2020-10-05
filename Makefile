@@ -9,7 +9,6 @@ setup:
 	cp bower_components/react/react.development.js addon/lib
 	cp bower_components/react/react-dom.development.js addon/lib
 	python3 -m venv .v
-	. .v/bin/activate && pip install GitPython
 
 dev1:
 	. .v/bin/activate && python meta/manifest.py

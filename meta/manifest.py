@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+'''modifies manifest file to use time as version'''
 import datetime
 import json
 import time
@@ -10,12 +11,6 @@ import git
 FILE = "addon/manifest.json"
 BAKFILE = "meta/manifest.json"
 SLEEP_SEC = os.environ.get("SLEEP_SEC", 10)
-
-
-def tag():
-    """current tag"""
-    tag = git.Repo().tags[-1]
-    return str(tag)
 
 
 def now():

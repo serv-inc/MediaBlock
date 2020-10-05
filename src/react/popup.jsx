@@ -4,6 +4,10 @@
 /** @fileinfo: show browser action popup */
 import Status from "./Status.js";
 
+if (typeof React === "undefined") {
+  document.getElementById("root").textContent = "React was not found";
+}
+
 function showTop() {
   chrome.runtime.sendMessage({ task: "isOk" }, function handler(response) {
     status = (

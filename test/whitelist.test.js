@@ -56,7 +56,7 @@ describe("Whitelist", function () {
 
   it("should allow removing with adding", async function () {
     let w = new Whitelist(mockStorage);
-    w.add("asdf");
+    await w.add("asdf");
     await w.remove("asdf");
     let q = await w.get();
     assert.notMatch("asdf", q);

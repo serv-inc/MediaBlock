@@ -11,7 +11,7 @@
     "setup": "bower install  # see also Makefile",
     "test": "npm run lint && npm run unittest",
     "unittest": "mocha",
-    "start:firefox": "yarn web-ext run --source-dir addon --browser-console"
+    "start:firefox": "web-ext run --source-dir addon --url 'localhost:8000' --url 'about:devtools-toolbox?type=extension&id=%40good-co' -- --safe-mode"
   },
   "repository": "git+https://github.com/serv-inc/MediaBlock.git",
   "keywords": [],

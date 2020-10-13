@@ -10,7 +10,8 @@
     "prod:background": "browserify src/browserify/background.js -r ./src/browserify/whitelist.js -o addon/background.js",
     "setup": "bower install  # see also Makefile",
     "test": "npm run lint && npm run unittest",
-    "unittest": "mocha"
+    "unittest": "mocha",
+    "start:firefox": "yarn web-ext run --source-dir addon --browser-console"
   },
   "repository": "git+https://github.com/serv-inc/MediaBlock.git",
   "keywords": [],
@@ -29,7 +30,8 @@
     "eslint-plugin-react": "^7.20.0",
     "mocha": "^8.0.1",
     "prettier": "2.0.5",
-    "watchify": "^3.11.1"
+    "watchify": "^3.11.1",
+    "web-ext": "^5.2.0"
   },
   "dependencies": {
     "react": "^16.13.1",

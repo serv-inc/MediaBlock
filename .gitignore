@@ -12,3 +12,4 @@ unused
 addon/popup/Switch.js
 *.bak
 addon/popup/Status.js
+meta/manifest.json

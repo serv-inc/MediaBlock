@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-'''modifies manifest file to use time as version'''
+"""sets version in addon manifest to current date temporarily"""
 import datetime
 import json
 import time

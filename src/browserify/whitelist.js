@@ -29,7 +29,15 @@ const w = class Whitelist {
         resolve();
       }
       this.storage.managed.get("whitelist", (result) => {
-        if (typeof result !== "undefined" && "whitelist" in result) {
+        if (
+          chrome.runtime.lastError &&
+          chrome.runtime.lastError.message !==
+            "Managed storage manifest not found"
+        ) {
+          console.error(chrome.runtime.lastError);
+          resolve();
+        }
+        if (result !== undefined && "whitelist" in result) {
           this.managed = result.whitelist;
         }
         this.initializedManaged = true;

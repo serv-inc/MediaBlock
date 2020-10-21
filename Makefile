@@ -13,20 +13,26 @@ setup:
 dev1old: # deactivated, as web-ext should ensure current version
 	. .v/bin/activate && python meta/manifest.py
 
-dev1:
+dev_ff:
 	npm run start:firefox
 
-dev2:
+dev_popup:
 	npm run dev:popup
 
-dev3: test
+dev_background_old:
 	npm run dev:background
 
-dev4:
+dev_server:
 	cd test/manual && python3 -m http.server
 
+dev_background:
+	git ls-files | entr npx esbuild --outfile=addon/background.js --bundle src/browserify/background.js
+
+dev_message:
+	echo src/message.js | entr cp src/message.js addon
+
 devall:
-	tmux attach -t goodCo || tmux new-session -n mnfst -d 'make dev1' \; new-window -n rct -d 'make dev2' \; new-window -n ify -d 'make dev3' \; new-window -n srv -d 'make dev4' \; rename 'goodCo' \; attach
+	tmux attach -t goodCo || tmux new-session -n ff -d 'make dev_ff' \; new-window -n pop -d 'make dev_popup' \; new-window -n bg -d 'make dev_background' \; new-window -n srv -d 'make dev_server' \; new-window -n msg -d 'make dev_message' \; rename 'goodCo' \; attach
 
 pretty:
 	npm run pretty

@@ -24,7 +24,7 @@ const w = class Whitelist {
   }
 
   async initManaged() {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       if (this.initializedManaged) {
         resolve();
       }
@@ -35,7 +35,7 @@ const w = class Whitelist {
             "Managed storage manifest not found"
         ) {
           console.error(chrome.runtime.lastError);
-          resolve();
+          reject();
         }
         if (result !== undefined && "whitelist" in result) {
           this.managed = result.whitelist;

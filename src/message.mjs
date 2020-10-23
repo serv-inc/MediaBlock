@@ -1,17 +1,14 @@
 export default class Message {
-  constructor(task) {
+  constructor({ task, request }) {
     this.task = task;
+    this.request = request;
   }
 
-  static fromObject(obj) {
-    return new Message(obj.task);
+  static get OkRequest() {
+    return new Message({ task: "isOk", request: true });
   }
 
-  static get isOk() {
-    return new Message("isOk");
-  }
-
-  isInstance(type) {
-    return this.task === type.task;
+  isInstance(other) {
+    return this.task === other.task && this.request == other.request;
   }
 }

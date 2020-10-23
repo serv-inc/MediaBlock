@@ -6,12 +6,13 @@ const expect = chai.expect;
 describe("message", () => {
   describe("Ok", () => {
     it("exists", () => {
-      expect(Message.isOk).to.be.a("object");
+      expect(Message.OkRequest).to.be.a("object");
     });
 
     it("compares", () => {
-      expect(Message.fromObject({ task: "isOk" }).isInstance(Message.isOk)).to
-        .be.true;
+      expect(new Message({ task: "isOk", request: true })).to.deep.equal(
+        Message.OkRequest
+      );
     });
   });
 });

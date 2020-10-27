@@ -14,3 +14,4 @@ addon/popup/Switch.js
 addon/popup/Status.js
 meta/manifest.json
 *~
+addon/message.js

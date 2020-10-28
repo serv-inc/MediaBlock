@@ -32,7 +32,12 @@ dev_message:
 	echo src/message.mjs | entr cp src/message.mjs addon
 
 devall:
-	tmux attach -t goodCo || tmux new-session -n ff -d 'make dev_ff' \; new-window -n pop -d 'make dev_popup' \; new-window -n bg -d 'make dev_background' \; new-window -n srv -d 'make dev_server' \; new-window -n msg -d 'make dev_message' \; rename 'goodCo' \; attach
+	tmux attach -t goodCo || tmux new-session -n ff -d 'make dev_ff' \; \
+	new-window -n pop -d 'make dev_popup' \; \
+	new-window -n bg -d 'make dev_background' \; \
+	new-window -n srv -d 'make dev_server' \; \
+	new-window -n msg -d 'make dev_message' \; \
+	rename 'goodCo' \; attach
 
 pretty:
 	npm run pretty

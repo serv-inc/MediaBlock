@@ -19,9 +19,6 @@ dev_ff:
 dev_popup:
 	npm run dev:popup
 
-dev_background_old:
-	npm run dev:background
-
 dev_server:
 	cd test/manual && python3 -m http.server
 

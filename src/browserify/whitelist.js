@@ -31,8 +31,8 @@ const w = class Whitelist {
       this.storage.managed.get("whitelist", (result) => {
         if (
           typeof chrome !== "undefined" &&
-          chrome?.runtime?.lastError &&
-          chrome?.runtime?.lastError?.message !==
+          chrome.runtime.lastError &&
+          chrome.runtime.lastError.message !==
             "Managed storage manifest not found"
         ) {
           console.error(chrome.runtime.lastError);

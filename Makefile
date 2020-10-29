@@ -2,6 +2,8 @@
 
 all: test
 
+deploy: test zip
+
 setup:
 	npm install
 	npm run setup
@@ -41,8 +43,6 @@ pretty:
 
 test:
 	npm run test
-
-deploy: test zip
 
 zip:
 	cd addon && zip -r ../GoodCompany.zip ./*

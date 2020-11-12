@@ -6,10 +6,8 @@ deploy: test zip
 
 setup:
 	npm install
-	npm run setup
 	mkdir -p addon/lib
-	cp bower_components/react/react.development.js addon/lib
-	cp bower_components/react/react-dom.development.js addon/lib
+	npm run setup
 	python3 -m venv .v
 
 dev1old: # deactivated, as web-ext should ensure current version

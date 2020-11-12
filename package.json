@@ -1,16 +1,17 @@
 {
   "name": "GoodCompany",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "If a page is Good Company (TM), show its graphics.",
-  
   "scripts": {
     "dev:popup": "babel --watch src/react --out-dir addon/popup --presets react-app/prod",
-    "lint": "eslint **/*.jsx src/*/*.js",
+    "dev:react_dom_lib": "esbuild node_modules/react-dom/umd/react-dom.development.js > addon/lib/react-dom.development.js",
+    "dev:react_lib": "esbuild node_modules/react/umd/react.development.js > addon/lib/react.development.js",
     "pretty": "prettier --write .eslintrc.js addon/manifest.json **/*.js **/*.jsx",
-    "setup": "bower install  # see also Makefile",
-    "test": "npm run lint && npm run unittest",
-    "unittest": "mocha",
-    "start:firefox": "web-ext run --source-dir addon --url 'localhost:8000' --url 'about:devtools-toolbox?type=extension&id=%40good-co' -- --safe-mode"
+    "setup": "npm run dev:react_lib && npm run dev:react_dom_lib",
+    "start:firefox": "web-ext run --source-dir addon --url 'localhost:8000' --url 'about:devtools-toolbox?type=extension&id=%40good-co' -- --safe-mode",
+    "test": "npm run test:lint && npm run test:unit",
+    "test:lint": "eslint **/*.jsx src/*/*.js",
+    "test:unit": "mocha"
   },
   "repository": "git+https://github.com/serv-inc/MediaBlock.git",
   "keywords": [],
@@ -22,7 +23,6 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-react-app": "^3.1.2",
-    "bower": "^1.8.8",
     "chai": "^4.2.0",
     "esbuild": "^0.7.16",
     "eslint": "^7.1.0",

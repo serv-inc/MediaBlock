@@ -1,4 +1,4 @@
-.PHONY: all setup dev1 dev2 devall pretty test
+.PHONY: all deploy setup dev_ff dev_popup dev_server dev_background dev_message devall pretty test zip
 
 all: test
 

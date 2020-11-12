@@ -8,10 +8,6 @@ setup:
 	npm install
 	mkdir -p addon/lib
 	npm run setup
-	python3 -m venv .v
-
-dev1old: # deactivated, as web-ext should ensure current version
-	. .v/bin/activate && python meta/manifest.py
 
 dev_ff:
 	npm run start:firefox

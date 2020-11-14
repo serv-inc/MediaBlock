@@ -11,7 +11,7 @@
     "start:firefox": "web-ext run --source-dir addon --url 'localhost:8000' --url 'about:devtools-toolbox?type=extension&id=%40good-co' -- --safe-mode",
     "test": "npm run test:lint && npm run test:unit",
     "test:lint": "eslint **/*.jsx src/*/*.js",
-    "test:unit": "mocha"
+    "test:unit": "mocha --experimental-modules"
   },
   "repository": "git+https://github.com/serv-inc/MediaBlock.git",
   "keywords": [],

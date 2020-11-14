@@ -5,14 +5,16 @@ const expect = chai.expect;
 
 describe("message", () => {
   describe("Ok", () => {
-    it("exists", () => {
-      expect(Message.OkRequest).to.be.a("object");
-    });
+    describe("Request", () => {
+      it("exists", () => {
+        expect(Message.OkRequest).to.be.a("object");
+      });
 
-    it("compares", () => {
-      expect(new Message({ task: "isOk", request: true })).to.deep.equal(
-        Message.OkRequest
-      );
+      it("compares", () => {
+        expect(new Message({ task: "isOk", request: true })).to.deep.equal(
+          Message.OkRequest
+        );
+      });
     });
   });
 });

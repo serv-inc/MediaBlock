@@ -11,9 +11,10 @@ describe("message", () => {
       });
 
       it("compares", () => {
-        expect(new Message({ task: "isOk", request: true })).to.deep.equal(
-          Message.OkRequest
-        );
+        const message = new Message({ task: "isOk", request: true });
+        expect(message).to.deep.equal(Message.OkRequest);
+
+        expect(message.isInstance(Message.OkRequest)).to.equal(true);
       });
     });
   });

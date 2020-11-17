@@ -18,4 +18,11 @@ describe("message", () => {
       });
     });
   });
+  describe("Whitelist", () => {
+    describe("Request", () => {
+      it("exists", () => {
+        expect(Message.WhitelistRequest).to.be.a("object");
+      });
+    });
+  });
 });

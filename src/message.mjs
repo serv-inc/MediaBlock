@@ -1,7 +1,6 @@
 export default class Message {
-  constructor({ task, request }) {
-    this.task = task;
-    this.request = request;
+  constructor(input) {
+    Object.assign(this, input);
   }
 
   static get OkRequest() {

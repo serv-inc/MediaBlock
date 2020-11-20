@@ -5,7 +5,7 @@ const Status = ({ name, isOk, onClick }) => {
   return (
     <div className="status">
       <p>
-        {name} is
+        {name || "this unknown page"} is
         <Switch
           isOn={isOk}
           handleToggle={onClick}

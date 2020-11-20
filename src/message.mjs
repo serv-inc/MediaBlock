@@ -11,7 +11,7 @@ export default class Message {
     return new Message({ task: "getWhitelist", request: true });
   }
 
-  isInstance(other) {
+  isType(other) {
     return this.task === other.task && this.request == other.request;
   }
 }

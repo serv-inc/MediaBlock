@@ -10,14 +10,15 @@ describe("message", () => {
         expect(Message.OkRequest).to.be.a("object");
       });
 
-      it("compares", () => {
+      it("has correct props", () => {
         const message = new Message({ task: "isOk", request: true });
         expect(message).to.deep.equal(Message.OkRequest);
 
-        expect(message.isInstance(Message.OkRequest)).to.equal(true);
+        expect(message.isType(Message.OkRequest)).to.equal(true);
       });
     });
   });
+
   describe("Whitelist", () => {
     describe("Request", () => {
       it("exists", () => {

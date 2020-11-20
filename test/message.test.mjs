@@ -26,4 +26,16 @@ describe("message", () => {
       });
     });
   });
+
+  describe("isType compares", () => {
+    it("Ok to Ok", () => {
+      expect(Message.OkRequest.isType(Message.OkRequest)).to.equal(true);
+    });
+
+    it("Ok to Whitelist", () => {
+      expect(Message.OkRequest.isType(Message.WhitelistRequest)).to.equal(
+        false
+      );
+    });
+  });
 });

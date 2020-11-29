@@ -40,6 +40,8 @@ const w = class Whitelist {
         }
         if (result !== undefined && "whitelist" in result) {
           this.managed = result.whitelist;
+        } else {
+          this.managed = [];
         }
         this.initializedManaged = true;
         resolve();
@@ -55,6 +57,8 @@ const w = class Whitelist {
       this.storage.local.get("whitelist", (result) => {
         if (typeof result !== "undefined" && "whitelist" in result) {
           this.local = result.whitelist;
+        } else {
+          this.local = [];
         }
         this.initializedLocal = true;
         resolve();
@@ -115,10 +119,10 @@ const w = class Whitelist {
   computeWhitelist() {
     let w = WHITELIST;
     if (this.managed.length) {
-      w += "|" + this.managed.join("|");
+      w = [w, this.managed.join("|")].join("|");
     }
     if (this.local.length) {
-      w += "|" + this.local.join("|");
+      w = [w, this.local.join("|")].join("|");
     }
     return RegExp(w);
   }

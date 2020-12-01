@@ -1,6 +1,9 @@
+const DEBUG=true;
+
 export default class Message {
   constructor(input) {
     Object.assign(this, input);
+    if (DEBUG) { console.log(this); console.log(new Error().stack); }
   }
 
   static get OkRequest() {

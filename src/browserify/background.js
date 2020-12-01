@@ -32,8 +32,8 @@ function route(request, sender, sendResponse) {
 }
 
 /** is active / passed url good company ? */
-async function isOkWithUrl(request, sender, sendResponse) {
-  await whitelist.get().then((wreg) => {
+function isOkWithUrl(request, sender, sendResponse) {
+  whitelist.get().then((wreg) => {
     sendResponse({
       task: "isOkWithUrl",
       data: { isOk: wreg.test(request.url.host), name: request.url.host },
@@ -57,13 +57,13 @@ function isOk(request, sender, sendResponse) {
       const u = new URL(activeTab.url);
       request.url = u;
     }
-    await isOkWithUrl(request, sender, sendResponse);
+    isOkWithUrl(request, sender, sendResponse);
   });
   return true; // keep channel open
 }
 
-async function addToWhitelist(request, sender, sendResponse) {
-  await whitelist.add(request.name).then((status) => {
+function addToWhitelist(request, sender, sendResponse) {
+  whitelist.add(request.name).then((status) => {
     sendResponse({
       task: "addToWhitelist",
       success: status,
@@ -72,8 +72,8 @@ async function addToWhitelist(request, sender, sendResponse) {
   return true; // keep channel open
 }
 
-async function removeFromWhitelist(request, sender, sendResponse) {
-  await whitelist.remove(request.name).then((status) => {
+function removeFromWhitelist(request, sender, sendResponse) {
+  whitelist.remove(request.name).then((status) => {
     sendResponse({
       task: "removeFromWhitelist",
       success: status,
@@ -82,8 +82,8 @@ async function removeFromWhitelist(request, sender, sendResponse) {
   return true; // keep channel open
 }
 
-async function getWhitelist(request, sender, sendResponse) {
-  await whitelist.data().then((wreg) =>
+function getWhitelist(request, sender, sendResponse) {
+  whitelist.data().then((wreg) =>
     sendResponse({
       task: "getWhitelist",
       data: wreg,

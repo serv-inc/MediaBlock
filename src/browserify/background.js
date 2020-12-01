@@ -9,15 +9,18 @@
     4. get whole whitelist
  */
 
+const Message = require("../message.mjs").default;
 const Whitelist = require("./whitelist.js").default;
 const whitelist = new Whitelist();
+
 
 chrome.runtime.onMessage.addListener(route);
 /** routes messages */
 function route(request, sender, sendResponse) {
+  const message = new Message(request)
   if (request.task === "isOkWithUrl" && !!request.url) {
     return isOkWithUrl(request, sender, sendResponse);
-  } else if (request.task === "isOk" && !request.url) {
+  } else if (message.isType(Message.OkRequest) && !request.url) {
     return isOk(request, sender, sendResponse);
   } else if (request.task === "addToWhitelist" && request.name) {
     return addToWhitelist(request, sender, sendResponse);

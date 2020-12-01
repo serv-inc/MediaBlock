@@ -3,13 +3,17 @@
 // licensed under the MPL 2.0 by (github.com/serv-inc)
 /** @fileinfo: show browser action popup */
 import Status from "./Status.js";
+import Message from "../message.mjs";
 
 if (typeof React === "undefined") {
   document.getElementById("root").textContent = "React was not found";
 }
 
+let status;
+
 function showTop() {
-  chrome.runtime.sendMessage({ task: "isOk" }, function handler(response) {
+  chrome.runtime.sendMessage(Message.OkRequest, function handler(response) {
+    const message = new Message(response);
     status = (
       <Status
         name={response.data.name}
@@ -49,8 +53,6 @@ function toggleContentBlock() {
     );
   });
 }
-
-let status;
 
 /** show whitelists */
 chrome.runtime.sendMessage({ task: "getWhitelist" }, function handler(

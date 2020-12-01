@@ -38,6 +38,7 @@ function onClick() {
       if (!response) {
         console.log("failed to set");
       }
+
       showTop();
     }
   );
@@ -55,7 +56,7 @@ function toggleContentBlock() {
 }
 
 /** show whitelists */
-chrome.runtime.sendMessage({ task: "getWhitelist" }, function handler(
+chrome.runtime.sendMessage(Message.WhitelistRequest, function handler(
   response
 ) {
   const managed = (

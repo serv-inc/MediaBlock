@@ -20,10 +20,10 @@ export default class Message {
   }
 
   static get OkRequest() {
-    return new Ok({ task: "isOk", request: true });
+    return new Ok({ request: true });
   }
   static get OkResponse() {
-    return new Ok({ task: "isOk", request: false });
+    return new Ok({ request: false });
   }
 
   static get WhitelistRequest() {
@@ -33,13 +33,13 @@ export default class Message {
   isType(other) {
     return this.task === other.task && this.request === other.request;
   }
-
-  toString() {
-    return JSON.stringify(this);
-  } 
 }
 
 export class Ok extends Message {
+  constructor(input) {
+    super(input);
+    this.task = 'isOk';
+  }
   get hasUrl() {
     return !!this.url;
   }

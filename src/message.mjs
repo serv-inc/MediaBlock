@@ -36,11 +36,14 @@ export default class Message {
 
   toString() {
     return JSON.stringify(this);
-  }
+  } 
 }
 
 export class Ok extends Message {
   get hasUrl() {
     return !!this.url;
+  }
+  get url() {
+    return this.url;
   }
 }

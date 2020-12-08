@@ -1,7 +1,6 @@
 "use strict";
 /* globals chrome */
 // licensed under the MPL 2.0 by (github.com/serv-inc)
-
 /**
  * @fileoverview hide images if page does not match whitelist
  */
@@ -48,6 +47,8 @@ async function main() {
     }
   );
 }
+// works here
+console.log('hiiiiiiiii from blockif');
 
 chrome.runtime.onMessage.addListener((message /*, sender, sendResponse*/) => {
   console.log(message);
@@ -60,5 +61,7 @@ chrome.runtime.onMessage.addListener((message /*, sender, sendResponse*/) => {
   }
   return true;
 });
+// fails here
+console.log('hiiiiiiiii from blockif');
 
 main();

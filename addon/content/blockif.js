@@ -49,7 +49,7 @@ async function main() {
   );
 }
 
-chrome.extension.onMessage.addListener((message /*, sender, sendResponse*/) => {
+chrome.runtime.onMessage.addListener((message /*, sender, sendResponse*/) => {
   console.log(message);
   if (message.task === "toggleContentScript") {
     isOk = !isOk;

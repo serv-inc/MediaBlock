@@ -17,10 +17,10 @@ export default class Message {
   }
 
   static get OkRequest() {
-    return new Message({ task: "isOk", request: true });
+    return new Ok({ task: "isOk", request: true });
   }
   static get OkResponse() {
-    return new OkResponse({ task: "isOk", request: false });
+    return new Ok({ task: "isOk", request: false });
   }
 
   static get WhitelistRequest() {
@@ -36,9 +36,8 @@ export default class Message {
   }
 }
 
-export class OkResponse extends Message {
+export class Ok extends Message {
   get hasUrl() {
     return !!this.url;
   }
 }
-    

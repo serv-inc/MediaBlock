@@ -15,11 +15,7 @@ function showTop() {
   chrome.runtime.sendMessage(Message.OkRequest, function handler(response) {
     const message = new Message(response);
     status = (
-      <Status
-        name={response.data.name}
-        isOk={response.data.isOk}
-        onClick={onClick}
-      />
+      <Status name={message.name} isOk={message.isOk} onClick={onClick} />
     );
     ReactDOM.render(status, document.getElementById("root"));
   });

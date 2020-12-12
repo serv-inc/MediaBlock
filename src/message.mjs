@@ -1,9 +1,19 @@
-const DEBUG=true;
+/** globals process */
+const DEBUG = isTest() ? 0 : 1;
+
+function isTest() {
+  return process !== undefined && /test:/.test(process.env.npm_lifecycle_event);
+}
 
 export default class Message {
   constructor(input) {
     Object.assign(this, input);
-    if (DEBUG) { console.log(this); console.log(new Error().stack); }
+    if (DEBUG) {
+      console.log(this);
+      if (DEBUG > 1) {
+        console.log(new Error().stack);
+      }
+    }
   }
 
   static get OkRequest() {

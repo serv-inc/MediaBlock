@@ -30,10 +30,10 @@ function hideIf(ok) {
 function getLocation() {
   if (window.parent === window) {
     // top frame
-    return document.location;
+    return document.location.href;
   } else {
     // iframe
-    return document.referrer;
+    return document.referrer.href;
   }
 }
 

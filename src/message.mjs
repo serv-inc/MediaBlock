@@ -1,5 +1,5 @@
 /** globals process */
-const DEBUG = isTest() ? 0 : 1;
+const DEBUG = isTest() ? 0 : 2;
 
 function isTest() {
   return process !== undefined && /test:/.test(process.env.npm_lifecycle_event);

@@ -13,7 +13,7 @@ let status;
 
 function showTop() {
   chrome.runtime.sendMessage(Message.OkRequest, function handler(response) {
-    const message = new Message(response);
+    const message = new Message(response.data);
     status = (
       <Status name={message.name} isOk={message.isOk} onClick={onClick} />
     );

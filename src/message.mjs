@@ -2,7 +2,10 @@
 const DEBUG = isTest() ? 0 : 2;
 
 function isTest() {
-  return process !== undefined && /test:/.test(process.env.npm_lifecycle_event);
+  return (
+    typeof process !== "undefined" &&
+    /test:/.test(process.env.npm_lifecycle_event)
+  );
 }
 
 export default class Message {

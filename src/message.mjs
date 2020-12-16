@@ -12,7 +12,7 @@ export default class Message {
   constructor(input) {
     Object.assign(this, input);
     if (DEBUG) {
-      console.log(this);
+      console.log(this.constructor.name, this);
       if (DEBUG > 1) {
         console.log(new Error().stack);
       }

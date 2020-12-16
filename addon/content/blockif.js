@@ -11,7 +11,7 @@ const HIDE_STYLE = `img, video {
     visibility: hidden !important; /* 2 */
     width: 1px; /* 3 */
 }`;
-const HIDE_STYLE_ID = "good-company-hide-media";
+const HIDE_STYLE_ID = "good-company-hide-media-123456";
 
 let isOk;
 

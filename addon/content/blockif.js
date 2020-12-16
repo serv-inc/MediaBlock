@@ -39,7 +39,7 @@ function getLocation() {
 
 async function main() {
   chrome.runtime.sendMessage(
-    { task: "isOkWithUrl", url: getLocation() },
+    { task: "isOk", request: true, url: getLocation() },
     function handler(response) {
       isOk = response.data.isOk;
       hideIf(isOk);

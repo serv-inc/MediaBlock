@@ -26,6 +26,10 @@ export default class Message {
     return new Ok({ request: false });
   }
 
+  static ToggleContent(show) {
+    return new Message({task: "toggleContentScript", request: true, show: show});
+  }
+
   static get WhitelistRequest() {
     return new Message({ task: "getWhitelist", request: true });
   }

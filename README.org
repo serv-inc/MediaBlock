@@ -1,5 +1,5 @@
 * Good Company
-If a page is Good Company (TM), show its graphics.
+If a page has benefitted you, show its graphics.
 Else, block images on all other Pages.
 
 All domains are not created equal. Some mean more to you than
@@ -7,10 +7,11 @@ others. To remind you of this, this (browser/web-) extension shows
 media (images and videos) only on pages that you deem good
 company. You can toggle this by clicking on the extension icon, or by
 setting [[./meta/all.json][managed storage]].
-** Support me
+** Support
+*** [[../../issues][Support for you: write a github issue]]
+*** me
 #+begin_html
 <a href="https://www.buymeacoffee.com/serving" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-green.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 #+end_html
-** [[../../issues][Support for you: write a github issue]]
 ** Credits
 - icon: https://material.io/resources/icons/?icon=thumbs_up_down&style=baseline

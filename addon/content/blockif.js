@@ -47,8 +47,6 @@ async function main() {
     }
   );
 }
-// works here
-console.log('hiiiiiiiii from blockif');
 
 chrome.runtime.onMessage.addListener((message /*, sender, sendResponse*/) => {
   console.log(message);
@@ -61,7 +59,5 @@ chrome.runtime.onMessage.addListener((message /*, sender, sendResponse*/) => {
   }
   return true;
 });
-// fails here
-console.log('hiiiiiiiii from blockif');
 
 main();

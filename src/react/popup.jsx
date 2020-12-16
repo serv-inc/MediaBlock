@@ -15,19 +15,20 @@ function showTop() {
   chrome.runtime.sendMessage(Message.OkRequest, function handler(response) {
     const message = new Message(response.data);
     status = (
-      <Status name={message.name} isOk={message.isOk} onClick={onClick} />
+      <Status name={message.name} isOk={message.isOk} onClick={toggleState} />
     );
     ReactDOM.render(status, document.getElementById("root"));
   });
 }
 showTop();
 
-/** shows this site's state */
-function onClick() {
+/** toggles this site's state */
+function toggleState() {
+  const shouldShow = !status.props.isOk;
   chrome.runtime.sendMessage(
     // todo: better to "toggleWhitelist"?
     {
-      task: status.props.isOk ? "removeFromWhitelist" : "addToWhitelist",
+      task: shouldShow ? "addToWhitelist" : "removeFromWhitelist",
       name: status.props.name,
     },
     function handler(response) {
@@ -35,18 +36,18 @@ function onClick() {
         console.log("failed to set");
       }
 
-      showTop();
+      showTop();  // sets status.props.isOk
     }
   );
-  toggleContentBlock();
+  toggleContentBlock(shouldShow);
 }
 
-function toggleContentBlock() {
+function toggleContentBlock(shouldShow) {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(
       tabs[0].id,
-      { task: "toggleContentScript" },
-      function () {}
+      Message.ToggleContent(shouldShow),
+      () => {}
     );
   });
 }

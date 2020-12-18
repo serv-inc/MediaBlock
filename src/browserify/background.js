@@ -19,7 +19,7 @@ function route(request, sender, sendResponse) {
   const message = new Message(request);
   if (request.task === "isOkWithUrl" && !!request.url) {
     return isOkWithUrl(request, sender, sendResponse);
-  } else if (message.isType(Message.OkRequest) && !request.url) {
+  } else if (message.isType(Message.OkRequest)) {
     return isOk(request, sender, sendResponse);
   } else if (request.task === "addToWhitelist" && request.name) {
     return addToWhitelist(request, sender, sendResponse);

@@ -13,9 +13,7 @@ const HIDE_STYLE = `img, video {
 }`;
 const HIDE_STYLE_ID = "good-company-hide-media-123456";
 
-let isOk;
-
-function hideIf(ok) {
+function showIf(ok) {
   let style = document.querySelector("style#" + HIDE_STYLE_ID);
   if (!ok && style === null) {
     style = document.createElement("style");
@@ -41,21 +39,17 @@ async function main() {
   chrome.runtime.sendMessage(
     { task: "isOk", request: true, url: getLocation() },
     function handler(response) {
-      isOk = response.data.isOk;
-      hideIf(isOk);
+      showIf(response.data.isOk);
       //    chrome.browserAction.setIcon({path: "a.png"});  // only from bg, overhead
     }
   );
 }
 
 chrome.runtime.onMessage.addListener((message /*, sender, sendResponse*/) => {
-  console.log(message);
   if (message.task === "toggleContentScript") {
-    isOk = !isOk;
-    hideIf(isOk);
+    showIf(message.show);
   } else {
-    console.log("unknown");
-    console.log(message);
+    console.log("unknown message in blockif: ", message);
   }
   return true;
 });

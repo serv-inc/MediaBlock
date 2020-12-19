@@ -21,6 +21,9 @@ dev_server:
 dev_background:
 	git ls-files | entr npx esbuild --outfile=addon/background.js --bundle src/browserify/background.js
 
+dev_content:
+	git ls-files | entr npx esbuild --sourcemap=inline --outfile=addon/content/blockif.js --bundle src/blockif.js
+
 dev_message:
 	echo src/message.mjs | entr cp src/message.mjs addon
 
@@ -33,6 +36,7 @@ devall:
 	new-window -n bg -d 'make dev_background' \; \
 	new-window -n web -d 'make dev_server' \; \
 	new-window -n msg -d 'make dev_message' \; \
+	new-window -n cntnt -d 'make dev_content' \; \
 	new-window -n tst -d 'make dev_test' \; \
 	rename 'goodCo' \; attach
 

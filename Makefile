@@ -27,8 +27,11 @@ dev_content:
 dev_message:
 	echo src/message.mjs | entr cp src/message.mjs addon
 
-dev_test:
+dev_test_unit:
 	git ls-files | entr npm run test
+
+dev_test_system:
+	git ls-files | entr py.test test/marionette_test.py
 
 devall:
 	tmux attach -t goodCo || tmux new-session -n ff -d 'make dev_ff' \; \
@@ -37,7 +40,8 @@ devall:
 	new-window -n web -d 'make dev_server' \; \
 	new-window -n msg -d 'make dev_message' \; \
 	new-window -n cntnt -d 'make dev_content' \; \
-	new-window -n tst -d 'make dev_test' \; \
+	new-window -n tst -d 'make dev_test_unit' \; \
+	new-window -n e2e -d 'make dev_test_system' \; \
 	rename 'goodCo' \; attach
 
 pretty:
@@ -48,4 +52,5 @@ test:
 
 zip:
 	cd addon && zip -r ../GoodCompany.zip ./*
+
 

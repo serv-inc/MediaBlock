@@ -44,7 +44,7 @@ function isOkWithUrl(request, sender, sendResponse) {
   return true; // keep channel open
 }
 
-/** is active / passed url good company ? */
+/** is active / passed url good company ?, needs to find Url */
 function isOk(request, sender, sendResponse) {
   chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
     const activeTab = tabs[0];

@@ -39,10 +39,10 @@ devall:
 	new-window -n bg -d 'make dev_background' \; \
 	new-window -n web -d 'make dev_server' \; \
 	new-window -n msg -d 'make dev_message' \; \
-	new-window -n cntnt -d 'make dev_content' \; \
 	new-window -n tst -d 'make dev_test_unit' \; \
 	new-window -n e2e -d 'make dev_test_system' \; \
 	rename 'goodCo' \; attach
+#	new-window -n cntnt -d 'make dev_content' \; \
 
 pretty:
 	npm run pretty

@@ -2,7 +2,12 @@ image: node:lts
 
 stages:
   - build
+  - test
 
 build:
   stage: build
   script: make setup
+
+test:
+  stage: test
+  script: npm run test

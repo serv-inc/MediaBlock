@@ -1,4 +1,6 @@
 * Versions
+** 1.0.0-alpha:
+*** lacked: toggle pages in UI
 ** 0.5.1
 *** Failed
     - to only block if main page matches

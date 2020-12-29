@@ -1,6 +1,6 @@
 {
   "name": "GoodCompany",
-  "version": "0.1.0",
+  "version": "1.0.0-alpha",
   "description": "If a page is Good Company (TM), show its graphics.",
   "scripts": {
     "dev:popup": "babel --watch src/react --out-dir addon/popup --presets react-app/dev",
@@ -9,9 +9,10 @@
     "pretty": "prettier --write .eslintrc.js addon/manifest.json **/*.js **/*.jsx **/*.mjs",
     "setup": "npm run dev:react_lib && npm run dev:react_dom_lib",
     "start:firefox": "web-ext run --source-dir addon --url 'localhost:8000' --url 'about:devtools-toolbox?type=extension&id=%40good-co' --arg='--marionette'",
-    "test": "npm run test:lint && npm run test:unit",
+    "test": "npm run test:version && npm run test:lint && npm run test:unit",
     "test:lint": "eslint **/*.jsx src/*/*.js",
-    "test:unit": "mocha --experimental-modules"
+    "test:unit": "mocha --experimental-modules",
+    "test:version": "meta/same_version.py"
   },
   "repository": "git+https://github.com/serv-inc/MediaBlock.git",
   "keywords": [],

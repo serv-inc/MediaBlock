@@ -9,26 +9,27 @@ before_script:
   - npm ci --cache .npm --prefer-offline
 
 stages:
-  - build
+  - setup
   - test
 
 setup:
-  stage: build
-  script: make setup
+  stage: setup
   needs: []
+  script: make setup
 
 test:version:
   stage: test
-  script: npm run test:version
   needs: []
+  cache: {}
+  script: npm run test:version
 
 test:lint:
   stage: test
-  script: npm run test:lint
   needs: ['setup']
+  script: npm run test:lint
 
 test:unit:
   stage: test
-  script: npm run test:unit
   needs: ['setup']
+  script: npm run test:unit
 

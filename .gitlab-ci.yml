@@ -6,8 +6,12 @@ stages:
 
 build:
   stage: build
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
   script: make setup
 
 test:
   stage: test
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
   script: npm run test

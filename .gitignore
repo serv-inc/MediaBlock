@@ -11,6 +11,5 @@ addon/popup/Status.js
 addon/popup/Switch.js
 addon/popup/popup.js
 node_modules
-package-lock.json
 test/__pycache__
 .v

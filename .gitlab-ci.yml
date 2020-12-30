@@ -12,10 +12,23 @@ stages:
   - build
   - test
 
-build:
+setup:
   stage: build
   script: make setup
+  needs: []
 
-test:
+test:version:
   stage: test
-  script: npm run test
+  script: npm run test:version
+  needs: []
+
+test:lint:
+  stage: test
+  script: npm run test:lint
+  needs: ['setup']
+
+test:unit:
+  stage: test
+  script: npm run test:unit
+  needs: ['setup']
+

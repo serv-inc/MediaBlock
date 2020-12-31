@@ -4,10 +4,15 @@ all: test
 
 deploy: test zip
 
-setup:
+setup: setup_py
 	npm install
 	mkdir -p addon/lib
 	npm run setup
+
+setup_py:
+	python3 -m venv .v
+	. .v/bin/activate
+	pip install pytest black marionette_driver
 
 dev_ff:
 	npm run start:firefox
@@ -22,7 +27,7 @@ dev_background:
 	git ls-files | entr npx esbuild --outfile=addon/background.js --bundle src/browserify/background.js
 
 dev_content:
-	git ls-files | entr npx esbuild --sourcemap=inline --outfile=addon/content/blockif.js --bundle src/blockif.js
+	git ls-files | entr npx esbuild --outfile=addon/content/blockif.js --bundle src/blockif.js
 
 dev_message:
 	echo src/message.mjs | entr cp src/message.mjs addon
@@ -31,7 +36,8 @@ dev_test_unit:
 	git ls-files | entr npm run test
 
 dev_test_system:
-	git ls-files | entr py.test test/marionette_test.py
+	. .v/bin/activate
+	git ls-files | entr py.test-3 test/marionette_test.py
 
 devall:
 	tmux attach -t goodCo || tmux new-session -n ff -d 'make dev_ff' \; \
@@ -52,5 +58,3 @@ test:
 
 zip:
 	cd addon && zip -r ../GoodCompany.zip ./*
-
-

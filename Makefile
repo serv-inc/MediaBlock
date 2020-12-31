@@ -4,7 +4,7 @@ all: test
 
 deploy: test zip
 
-setup: setup_py
+setup:
 	npm install
 	mkdir -p addon/lib
 	npm run setup
@@ -35,7 +35,7 @@ dev_message:
 dev_test_unit:
 	git ls-files | entr npm run test
 
-dev_test_system:
+dev_test_system: setup_py
 	. .v/bin/activate
 	git ls-files | entr py.test-3 test/marionette_test.py
 

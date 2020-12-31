@@ -25,11 +25,15 @@ test:version:
 
 test:lint:
   stage: test
-  needs: ['setup']
+  needs: ["setup"]
   script: npm run test:lint
 
 test:unit:
   stage: test
-  needs: ['setup']
+  needs: ["setup"]
   script: npm run test:unit
 
+build:
+  stage: build
+  needs: ["setup"]
+  script: npm run build

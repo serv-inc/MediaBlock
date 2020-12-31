@@ -3,8 +3,9 @@
   "version": "1.0.0-alpha",
   "description": "If a page is Good Company (TM), show its graphics.",
   "scripts": {
-    "dev:popup": "babel --watch src/react --out-dir addon/popup --presets react-app/dev",
+    "build": "npm run build:popup",
     "build:popup": "babel src/react --out-dir dist/popup --presets react-app/dev",
+    "dev:popup": "babel --watch src/react --out-dir addon/popup --presets react-app/dev",
     "dev:react_dom_lib": "esbuild node_modules/react-dom/umd/react-dom.development.js > addon/lib/react-dom.development.js",
     "dev:react_lib": "esbuild node_modules/react/umd/react.development.js > addon/lib/react.development.js",
     "pretty": "prettier --write .eslintrc.js addon/manifest.json **/*.js **/*.jsx **/*.mjs",

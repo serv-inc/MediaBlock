@@ -39,4 +39,9 @@ test:unit:
 build:
   stage: build
   needs: ["setup"]
-  script: npm run build
+  artifacts:
+    paths:
+      - GoodCompany.zip
+  script:
+    - npm run build
+    - make zip

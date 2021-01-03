@@ -28,8 +28,7 @@ function route(request, sender, sendResponse) {
   } else if (request.task === "removeFromWhitelist") {
     return removeFromWhitelist(request, sender, sendResponse);
   } else {
-    console.log("unknown");
-    console.log(request);
+    console.warn("unknown message : ", request);
   }
 }
 

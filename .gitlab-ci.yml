@@ -16,7 +16,9 @@ before_script:
 setup:
   stage: setup
   needs: []
-  script: make setup
+  script:
+    - npm install
+    - npm run setup
 
 test:version:
   stage: test

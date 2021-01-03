@@ -6,7 +6,6 @@ deploy: test zip
 
 setup:
 	npm install
-	mkdir -p addon/lib
 	npm run setup
 
 setup_py:

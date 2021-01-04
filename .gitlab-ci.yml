@@ -42,6 +42,7 @@ build:
   artifacts:
     paths:
       - GoodCompany*.zip
+      - addon/
   script:
     - npm run setup
     - npm run build

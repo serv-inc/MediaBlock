@@ -25,6 +25,7 @@ dev_server:
 dev_background:
 	git ls-files | entr npx esbuild --outfile=addon/background.js --bundle src/browserify/background.js
 
+# UNUSED
 dev_content:
 	git ls-files | entr npx esbuild --outfile=addon/content/blockif.js --bundle src/blockif.js
 

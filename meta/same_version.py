@@ -14,6 +14,13 @@ def _from_changelog():
     return line[3:].replace("\n", "")
 
 
+def _compare(firstname, first, secondname, second):
+    """compare two entries"""
+    assert first == second, "{} version ({}) and {} version ({}) differ".format(
+        firstname, first, secondname, second
+    )
+
+
 def validate():
     """versions need to be the same"""
     changelog_version = _from_changelog()
@@ -21,21 +28,9 @@ def validate():
     package_version = json.load(open("package.json"))["version"]
     package_lock_version = json.load(open("package-lock.json"))["version"]
 
-    assert (
-        changelog_version == manifest_version
-    ), "changelog version ({}) and manifest version ({}) differ".format(
-        changelog_version, manifest_version
-    )
-    assert (
-        package_version == manifest_version
-    ), "package version ({}) and manifest version ({}) differ".format(
-        package_version, manifest_version
-    )
-    assert (
-        package_lock_version == manifest_version
-    ), "package-lock version ({}) differs from manifest and package version ({}) differ".format(
-        package_lock_version, manifest_version
-    )
+    _compare("changelog", changelog_version, manifest_version, "manifest")
+    _compare("changelog", changelog_version, package_version, "package")
+    _compare("changelog", changelog_version, package_lock_version, "package lock")
 
 
 if __name__ == "__main__":

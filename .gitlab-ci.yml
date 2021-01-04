@@ -4,6 +4,7 @@ stages:
   - setup
   - test
   - build
+  - testbuild
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -35,11 +36,6 @@ test:unit:
   needs: ["setup"]
   script: npm run test:unit
 
-test:web-ext-lint:
-  stage: test
-  needs: ["setup"]
-  script: npm run test:web-ext-lint
-
 build:
   stage: build
   needs: ["setup"]
@@ -49,3 +45,8 @@ build:
   script:
     - npm run setup
     - npm run build
+
+test:web-ext-lint:
+  stage: testbuild
+  needs: ["setup", "build"]
+  script: npm run test:web-ext-lint

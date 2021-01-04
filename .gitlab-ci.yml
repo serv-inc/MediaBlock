@@ -4,6 +4,7 @@ stages:
   - setup
   - test
   - build
+  - deploy
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -39,9 +40,14 @@ test:unit:
 build:
   stage: build
   needs: ["setup"]
+  script:
+    - npm run build
+
+deploy:
+  image: debian:slim
+  stage: deploy
+  needs: ["build", "setup"]
   artifacts:
     paths:
       - GoodCompany.zip
-  script:
-    - npm run build
-    - make zip
+  script: make zip

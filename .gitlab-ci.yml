@@ -42,6 +42,6 @@ build:
   needs: ["setup"]
   artifacts:
     paths:
-      - GoodCompany.zip
+      - GoodCompany*.zip
   script:
     - npm run build

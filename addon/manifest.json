@@ -3,7 +3,7 @@
 
   "name": "Good Company",
   "description": "If a page is Good Company, show its graphics. On all other pages, block images.",
-  "version": "0.6.0-alpha",
+  "version": "0.6.0",
 
   "short_name": "Good Co",
   "author": "serv-inc",
@@ -35,8 +35,8 @@
     "default_popup": "popup/popup.html",
     "theme_icons": [
       {
-        "light": "2x/baseline_thumbs_up_down_black_48dp.png",
-        "dark": "2x/baseline_thumbs_up_down_black_48dp.png",
+        "light": "images/baseline_thumbs_up_down_black_48dp.png",
+        "dark": "images/baseline_thumbs_up_down_black_48dp.png",
         "size": 48
       }
     ]

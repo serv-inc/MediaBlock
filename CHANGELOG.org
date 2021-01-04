@@ -1,5 +1,5 @@
 * Versions
-** 0.6.0-alpha:
+** 0.6.0-alpha
 *** lacked: toggle pages in UI
 ** 0.5.1
 *** Failed

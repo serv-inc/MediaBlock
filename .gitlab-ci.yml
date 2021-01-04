@@ -19,7 +19,6 @@ setup:
   needs: []
   script:
     - npm install
-    - npm run setup
 
 test:version:
   stage: test
@@ -44,4 +43,5 @@ build:
     paths:
       - GoodCompany*.zip
   script:
+    - npm run setup
     - npm run build

@@ -36,6 +36,11 @@ test:unit:
   needs: ["setup"]
   script: npm run test:unit
 
+test:web-ext-lint:
+  stage: test
+  needs: ["setup"]
+  script: npm run test:web-ext-lint
+
 build:
   stage: build
   needs: ["setup"]

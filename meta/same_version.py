@@ -28,9 +28,9 @@ def validate():
     package_version = json.load(open("package.json"))["version"]
     package_lock_version = json.load(open("package-lock.json"))["version"]
 
-    _compare("changelog", changelog_version, manifest_version, "manifest")
-    _compare("changelog", changelog_version, package_version, "package")
-    _compare("changelog", changelog_version, package_lock_version, "package lock")
+    _compare("changelog", changelog_version, "manifest", manifest_version)
+    _compare("changelog", changelog_version, "package", package_version)
+    _compare("changelog", changelog_version, "package lock", package_lock_version)
 
 
 if __name__ == "__main__":

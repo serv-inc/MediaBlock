@@ -1,10 +1,10 @@
 {
   "name": "GoodCompany",
-  "version": "1.0.0-alpha",
+  "version": "0.6.0-alpha",
   "description": "If a page is Good Company (TM), show its graphics.",
   "scripts": {
     "setup": "mkdir -p addon/lib && npm run dev:react_lib && npm run dev:react_dom_lib",
-    "build": "npm run build:popup && npm run build:background && cp src/message.mjs addon",
+    "build": "npm run build:popup && npm run build:background && cp src/message.mjs addon && zip-build addon .",
     "build:background": "esbuild --outfile=addon/background.js --bundle src/browserify/background.js",
     "build:popup": "babel src/react --out-dir addon/popup --presets react-app/prod",
     "dev:popup": "babel --watch src/react --out-dir addon/popup --presets react-app/dev",
@@ -33,7 +33,8 @@
     "eslint-plugin-react": "^7.20.0",
     "mocha": "^8.2.0",
     "prettier": "2.0.5",
-    "web-ext": "^5.2.0"
+    "web-ext": "^5.2.0",
+    "zip-build": "^1.3.0"
   },
   "dependencies": {
     "react": "^16.13.1",

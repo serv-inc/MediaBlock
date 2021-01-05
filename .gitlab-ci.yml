@@ -26,7 +26,7 @@ test:version:
   cache: {}
   script: npm run test:version
 
-test:lint:
+test:eslint:
   stage: test
   needs: ["setup"]
   script: npm run test:lint

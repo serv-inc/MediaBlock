@@ -51,3 +51,9 @@ test:web-ext-lint:
   stage: testbuild
   needs: ["setup", "build"]
   script: npm run test:web-ext-lint
+
+sign:
+  stage: deploy
+  when: manual
+  needs: everything
+  script: npx web-ext sign -s addon/ --api-key $MOZILLA_KEY --api-secret $MOZILLA_SECRET
